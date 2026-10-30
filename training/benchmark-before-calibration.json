@@ -1,0 +1,672 @@
+{
+  "generatedAt": "2026-10-30T23:37:21.342Z",
+  "kind": "held-out-self-play",
+  "games": 48,
+  "comparator": "Three fixed hand-written strategic-prior policies; no search, not humans",
+  "candidate": "Self-play selected heuristic weights; no search",
+  "seedPrefix": "heldout-v2 (not used in tuning)",
+  "seatRotated": true,
+  "wins": 10,
+  "draws": 0,
+  "winRate": 0.20833333333333334,
+  "wilson95": [
+    0.11730147795889813,
+    0.3425917352135348
+  ],
+  "elapsedSeconds": 4.977389417,
+  "policy": {
+    "version": 1,
+    "provenance": "self-play parameter search",
+    "humanDataUsed": false,
+    "weights": {
+      "points": 9,
+      "production": 9.638842123746873,
+      "diversity": 1.7569677210703958,
+      "expansion": 3.7228039063489997,
+      "hand": 0.25601426543318667,
+      "progress": 1.8889252841938287,
+      "army": 0.5461584556952584,
+      "threat": 1.398111230361974
+    },
+    "resource": [
+      0.9987133767455817,
+      1.1031493585836143,
+      0.8985284951049834,
+      1.3227056860737503,
+      1.4531935298163443
+    ],
+    "training": {
+      "seedPrefix": "training-v1",
+      "candidates": 6,
+      "games": 288,
+      "selectedCandidate": 5,
+      "completedAt": "2026-10-30T23:36:26.071Z"
+    }
+  },
+  "results": [
+    {
+      "seed": "heldout-v2-0",
+      "winner": 2,
+      "turns": 71,
+      "actions": 252,
+      "scores": [
+        6,
+        5,
+        10,
+        7
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-0",
+      "winner": 2,
+      "turns": 87,
+      "actions": 332,
+      "scores": [
+        8,
+        6,
+        10,
+        9
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-0",
+      "winner": 3,
+      "turns": 64,
+      "actions": 228,
+      "scores": [
+        3,
+        3,
+        7,
+        10
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-0",
+      "winner": 0,
+      "turns": 69,
+      "actions": 230,
+      "scores": [
+        10,
+        4,
+        7,
+        7
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-1",
+      "winner": 2,
+      "turns": 83,
+      "actions": 312,
+      "scores": [
+        5,
+        8,
+        10,
+        9
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-1",
+      "winner": 3,
+      "turns": 72,
+      "actions": 256,
+      "scores": [
+        7,
+        7,
+        7,
+        10
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-1",
+      "winner": 1,
+      "turns": 54,
+      "actions": 190,
+      "scores": [
+        7,
+        10,
+        5,
+        8
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-1",
+      "winner": 3,
+      "turns": 72,
+      "actions": 256,
+      "scores": [
+        7,
+        7,
+        7,
+        10
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-2",
+      "winner": 1,
+      "turns": 78,
+      "actions": 285,
+      "scores": [
+        4,
+        10,
+        7,
+        8
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-2",
+      "winner": 1,
+      "turns": 70,
+      "actions": 269,
+      "scores": [
+        5,
+        11,
+        7,
+        6
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-2",
+      "winner": 1,
+      "turns": 62,
+      "actions": 216,
+      "scores": [
+        2,
+        10,
+        4,
+        4
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-2",
+      "winner": 2,
+      "turns": 71,
+      "actions": 248,
+      "scores": [
+        5,
+        7,
+        10,
+        4
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-3",
+      "winner": 0,
+      "turns": 57,
+      "actions": 226,
+      "scores": [
+        10,
+        6,
+        5,
+        6
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-3",
+      "winner": 1,
+      "turns": 62,
+      "actions": 275,
+      "scores": [
+        9,
+        10,
+        8,
+        9
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-3",
+      "winner": 3,
+      "turns": 64,
+      "actions": 238,
+      "scores": [
+        6,
+        9,
+        6,
+        10
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-3",
+      "winner": 0,
+      "turns": 69,
+      "actions": 263,
+      "scores": [
+        10,
+        8,
+        8,
+        8
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-4",
+      "winner": 3,
+      "turns": 68,
+      "actions": 270,
+      "scores": [
+        7,
+        9,
+        8,
+        10
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-4",
+      "winner": 2,
+      "turns": 63,
+      "actions": 234,
+      "scores": [
+        6,
+        6,
+        10,
+        8
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-4",
+      "winner": 2,
+      "turns": 59,
+      "actions": 232,
+      "scores": [
+        7,
+        8,
+        10,
+        6
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-4",
+      "winner": 3,
+      "turns": 68,
+      "actions": 253,
+      "scores": [
+        6,
+        9,
+        7,
+        10
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-5",
+      "winner": 0,
+      "turns": 81,
+      "actions": 330,
+      "scores": [
+        10,
+        8,
+        6,
+        9
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-5",
+      "winner": 0,
+      "turns": 49,
+      "actions": 159,
+      "scores": [
+        10,
+        6,
+        4,
+        6
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-5",
+      "winner": 3,
+      "turns": 64,
+      "actions": 223,
+      "scores": [
+        7,
+        6,
+        6,
+        10
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-5",
+      "winner": 1,
+      "turns": 66,
+      "actions": 231,
+      "scores": [
+        7,
+        10,
+        6,
+        8
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-6",
+      "winner": 1,
+      "turns": 86,
+      "actions": 328,
+      "scores": [
+        7,
+        10,
+        9,
+        7
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-6",
+      "winner": 1,
+      "turns": 94,
+      "actions": 346,
+      "scores": [
+        6,
+        11,
+        7,
+        6
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-6",
+      "winner": 1,
+      "turns": 86,
+      "actions": 328,
+      "scores": [
+        7,
+        10,
+        9,
+        7
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-6",
+      "winner": 1,
+      "turns": 90,
+      "actions": 336,
+      "scores": [
+        6,
+        11,
+        5,
+        6
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-7",
+      "winner": 2,
+      "turns": 67,
+      "actions": 262,
+      "scores": [
+        9,
+        6,
+        11,
+        7
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-7",
+      "winner": 2,
+      "turns": 55,
+      "actions": 193,
+      "scores": [
+        9,
+        7,
+        10,
+        6
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-7",
+      "winner": 3,
+      "turns": 60,
+      "actions": 251,
+      "scores": [
+        9,
+        8,
+        9,
+        10
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-7",
+      "winner": 2,
+      "turns": 63,
+      "actions": 255,
+      "scores": [
+        9,
+        8,
+        10,
+        6
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-8",
+      "winner": 1,
+      "turns": 98,
+      "actions": 433,
+      "scores": [
+        9,
+        10,
+        9,
+        9
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-8",
+      "winner": 0,
+      "turns": 69,
+      "actions": 256,
+      "scores": [
+        10,
+        8,
+        5,
+        6
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-8",
+      "winner": 0,
+      "turns": 97,
+      "actions": 345,
+      "scores": [
+        10,
+        6,
+        8,
+        9
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-8",
+      "winner": 1,
+      "turns": 70,
+      "actions": 262,
+      "scores": [
+        6,
+        10,
+        7,
+        6
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-9",
+      "winner": 1,
+      "turns": 70,
+      "actions": 273,
+      "scores": [
+        7,
+        10,
+        7,
+        7
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-9",
+      "winner": 3,
+      "turns": 84,
+      "actions": 350,
+      "scores": [
+        9,
+        8,
+        9,
+        10
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-9",
+      "winner": 1,
+      "turns": 82,
+      "actions": 338,
+      "scores": [
+        9,
+        10,
+        9,
+        8
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-9",
+      "winner": 1,
+      "turns": 78,
+      "actions": 280,
+      "scores": [
+        8,
+        10,
+        9,
+        9
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-10",
+      "winner": 1,
+      "turns": 54,
+      "actions": 179,
+      "scores": [
+        4,
+        10,
+        5,
+        5
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-10",
+      "winner": 1,
+      "turns": 58,
+      "actions": 196,
+      "scores": [
+        5,
+        11,
+        5,
+        7
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-10",
+      "winner": 1,
+      "turns": 54,
+      "actions": 177,
+      "scores": [
+        5,
+        10,
+        5,
+        6
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-10",
+      "winner": 1,
+      "turns": 54,
+      "actions": 177,
+      "scores": [
+        5,
+        10,
+        5,
+        6
+      ],
+      "candidateSeat": 3
+    },
+    {
+      "seed": "heldout-v2-11",
+      "winner": 1,
+      "turns": 42,
+      "actions": 145,
+      "scores": [
+        5,
+        10,
+        3,
+        4
+      ],
+      "candidateSeat": 0
+    },
+    {
+      "seed": "heldout-v2-11",
+      "winner": 2,
+      "turns": 67,
+      "actions": 250,
+      "scores": [
+        6,
+        9,
+        10,
+        5
+      ],
+      "candidateSeat": 1
+    },
+    {
+      "seed": "heldout-v2-11",
+      "winner": 1,
+      "turns": 66,
+      "actions": 262,
+      "scores": [
+        4,
+        10,
+        7,
+        5
+      ],
+      "candidateSeat": 2
+    },
+    {
+      "seed": "heldout-v2-11",
+      "winner": 3,
+      "turns": 72,
+      "actions": 266,
+      "scores": [
+        7,
+        7,
+        8,
+        10
+      ],
+      "candidateSeat": 3
+    }
+  ]
+}

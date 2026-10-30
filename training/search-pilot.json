@@ -1,0 +1,68 @@
+{
+  "generatedAt": "2026-10-30T23:37:24.233Z",
+  "kind": "full-match search smoke evaluation",
+  "games": 4,
+  "searchBudget": {
+    "rollouts": 18,
+    "horizonTurns": 4
+  },
+  "comparator": "Three tuned strategic heuristics without search",
+  "wins": 2,
+  "draws": 0,
+  "elapsedSeconds": 6.866368791000001,
+  "caveat": "Small seed-balanced smoke sample, not a significant strength estimate or human rating. Browser expert budget is 54 rollouts / 5 turns.",
+  "results": [
+    {
+      "seed": "search-smoke-v1-0",
+      "winner": 2,
+      "turns": 75,
+      "actions": 281,
+      "scores": [
+        6,
+        6,
+        10,
+        5
+      ],
+      "searchSeat": 0
+    },
+    {
+      "seed": "search-smoke-v1-0",
+      "winner": 1,
+      "turns": 82,
+      "actions": 291,
+      "scores": [
+        5,
+        10,
+        6,
+        9
+      ],
+      "searchSeat": 1
+    },
+    {
+      "seed": "search-smoke-v1-0",
+      "winner": 2,
+      "turns": 59,
+      "actions": 214,
+      "scores": [
+        6,
+        5,
+        10,
+        5
+      ],
+      "searchSeat": 2
+    },
+    {
+      "seed": "search-smoke-v1-0",
+      "winner": 2,
+      "turns": 67,
+      "actions": 226,
+      "scores": [
+        5,
+        4,
+        10,
+        5
+      ],
+      "searchSeat": 3
+    }
+  ]
+}

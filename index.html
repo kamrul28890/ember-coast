@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f4ee"><meta name="description" content="Build an island economy. Bargain with thoughtful rivals. A local strategy game with explainable planning bots.">
+<title>Ember Coast — A little island. A bigger game.</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23283e36'/%3E%3Cpath d='M13 41l18-26 19 26z' fill='%23e5b963'/%3E%3Cpath d='M14 48h36' stroke='%23efeee2' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./" aria-label="Ember Coast home"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M5 25L18 6l13 19z" fill="currentColor"/><path d="M7 31h22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M17 21l5-7 6 11H14z" fill="#e9bb67"/></svg><span>ember coast<span class="brand-dot">.</span></span></a>
+  <div class="toplinks"><span class="local-badge"><i></i> LOCAL TABLE</span><button id="how-button" class="text-button">How to play <span>↗</span></button><button id="new-button" class="outline-button">New island <span>＋</span></button></div>
+</header>
+<main class="app-shell">
+  <section class="table-section" aria-label="Game table">
+    <div class="island-heading"><div><span class="eyebrow">A LITTLE ISLAND. A BIGGER GAME.</span><h1>Make your own<br><em>good fortune.</em></h1></div><div class="table-meta"><span id="round-label">ROUND 1</span><span class="seed-label" id="seed-label"></span></div></div>
+    <div id="players" class="players" aria-label="Players"></div>
+    <div class="board-wrap"><div class="board-tip" id="board-tip"><i></i> Your turn. Let the island decide.</div><svg id="board" viewBox="-360 -307 720 614" role="img" aria-label="Interactive island game board"></svg><div class="board-credit">AN ISLAND OF POSSIBILITIES</div><button id="legend-button" class="board-help" aria-label="Show map legend">?</button></div>
+    <div class="hand-wrap"><div class="hand-heading"><span class="eyebrow">YOUR RESOURCES</span><span id="hand-summary">Ready for the tide</span></div><div id="hand" class="resource-hand"></div><div id="dev-hand" class="dev-hand"></div></div>
+    <div class="table-footer"><span><i></i> Saved on this device</span><button id="export-button" class="text-button">Export match ↗</button><span id="model-label">THOUGHTFUL RIVALS · FAIR INFORMATION</span></div>
+  </section>
+  <aside class="sidebar" aria-label="Actions and island activity">
+    <section class="turn-panel"><div class="section-label"><span id="turn-label">YOUR TURN</span><span id="phase-pill" class="small-pill">ROLL & GATHER</span></div><div class="turn-title"><h2 id="turn-title">A fresh start.</h2><div class="dice" id="dice"><span>·</span><span>·</span></div></div><p id="turn-description">Roll the dice, collect your resources, and find your next move.</p><button id="primary-action" class="primary-button">Roll the dice <span>↗</span></button><button id="secondary-action" class="secondary-button" hidden>Cancel selection</button></section>
+    <section class="build-panel"><div class="section-label"><span>MAKE YOUR MOVE</span><button id="advisor-button" class="tiny-button">✧ Ask advisor</button></div><div id="build-actions" class="build-actions"></div><button id="trade-button" class="trade-button"><span>⇄</span><strong>Make a trade</strong><span>Let's talk resources ↗</span></button></section>
+    <section class="journal-panel"><div class="tab-row"><button class="tab active" data-tab="activity">Island journal</button><button class="tab" data-tab="minds">Bot minds <span>✧</span></button><button class="tab" data-tab="stats">Dice</button></div><div id="journal" class="journal" aria-live="polite"></div></section>
+    <div class="sidebar-note"><span>✧</span><p>Rivals with a plan.<br><strong>No peeking. No loaded dice.</strong></p><button id="ai-button" class="text-button" aria-label="Learn how the AI works">↗</button></div>
+  </aside>
+</main>
+<div id="toast" class="toast" role="status"></div>
+<dialog id="modal"><div id="modal-content"></div></dialog>
+<script type="module" src="./src/app.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,3975 @@
+{
+  "method": "Deterministic bounded random search over heuristic weights, seat-rotated self-play. Not neural-network training.",
+  "elapsedSeconds": 20.228389084000003,
+  "baseline": {
+    "version": 1,
+    "provenance": "strategic-prior",
+    "humanDataUsed": false,
+    "weights": {
+      "points": 9,
+      "production": 8,
+      "diversity": 1.5,
+      "expansion": 4.2,
+      "hand": 0.26,
+      "progress": 1.8,
+      "army": 0.7,
+      "threat": 1.5
+    },
+    "resource": [
+      1,
+      1.05,
+      0.85,
+      1.3,
+      1.4
+    ]
+  },
+  "selected": {
+    "version": 1,
+    "provenance": "self-play parameter search",
+    "humanDataUsed": false,
+    "weights": {
+      "points": 9,
+      "production": 8.316487342398613,
+      "diversity": 1.576124772807816,
+      "expansion": 4.088627388286405,
+      "hand": 0.2821020047175698,
+      "progress": 1.842759489621967,
+      "army": 0.8219316635944415,
+      "threat": 1.4601846517296506
+    },
+    "resource": [
+      0.9492895379662514,
+      0.9560547438520007,
+      0.7812723037158139,
+      1.3821355031197893,
+      1.4787461537029594
+    ],
+    "training": {
+      "seedPrefix": "training-v1",
+      "candidates": 6,
+      "games": 288,
+      "selectedCandidate": 2,
+      "completedAt": "2026-10-30T23:45:24.771Z"
+    }
+  },
+  "reports": [
+    {
+      "candidate": 2,
+      "wins": 14,
+      "margin": 0.3888888888888887,
+      "config": {
+        "version": 1,
+        "provenance": "strategic-prior",
+        "humanDataUsed": false,
+        "weights": {
+          "points": 9,
+          "production": 8.316487342398613,
+          "diversity": 1.576124772807816,
+          "expansion": 4.088627388286405,
+          "hand": 0.2821020047175698,
+          "progress": 1.842759489621967,
+          "army": 0.8219316635944415,
+          "threat": 1.4601846517296506
+        },
+        "resource": [
+          0.9492895379662514,
+          0.9560547438520007,
+          0.7812723037158139,
+          1.3821355031197893,
+          1.4787461537029594
+        ]
+      },
+      "results": [
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 83,
+          "actions": 324,
+          "scores": [
+            9,
+            3,
+            10,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 71,
+          "actions": 262,
+          "scores": [
+            6,
+            3,
+            10,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 47,
+          "actions": 151,
+          "scores": [
+            4,
+            3,
+            10,
+            4
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 248,
+          "scores": [
+            6,
+            4,
+            10,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 1,
+          "turns": 70,
+          "actions": 289,
+          "scores": [
+            6,
+            10,
+            8,
+            4
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 55,
+          "actions": 214,
+          "scores": [
+            7,
+            7,
+            10,
+            4
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 3,
+          "turns": 84,
+          "actions": 351,
+          "scores": [
+            5,
+            4,
+            8,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 3,
+          "turns": 68,
+          "actions": 260,
+          "scores": [
+            6,
+            5,
+            5,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 0,
+          "turns": 77,
+          "actions": 305,
+          "scores": [
+            10,
+            9,
+            4,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 0,
+          "turns": 57,
+          "actions": 216,
+          "scores": [
+            10,
+            2,
+            5,
+            4
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 70,
+          "actions": 266,
+          "scores": [
+            7,
+            10,
+            9,
+            4
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 74,
+          "actions": 293,
+          "scores": [
+            8,
+            10,
+            7,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 1,
+          "turns": 58,
+          "actions": 224,
+          "scores": [
+            6,
+            10,
+            8,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 1,
+          "turns": 58,
+          "actions": 227,
+          "scores": [
+            5,
+            10,
+            9,
+            5
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 71,
+          "actions": 278,
+          "scores": [
+            8,
+            9,
+            10,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 59,
+          "actions": 224,
+          "scores": [
+            4,
+            9,
+            10,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 3,
+          "turns": 72,
+          "actions": 246,
+          "scores": [
+            7,
+            7,
+            6,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 82,
+          "actions": 320,
+          "scores": [
+            9,
+            10,
+            8,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 70,
+          "actions": 259,
+          "scores": [
+            6,
+            11,
+            6,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 50,
+          "actions": 169,
+          "scores": [
+            5,
+            10,
+            4,
+            4
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 63,
+          "actions": 243,
+          "scores": [
+            4,
+            8,
+            10,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 75,
+          "actions": 294,
+          "scores": [
+            7,
+            5,
+            10,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 43,
+          "actions": 145,
+          "scores": [
+            3,
+            3,
+            10,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 70,
+          "actions": 270,
+          "scores": [
+            5,
+            10,
+            8,
+            9
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 53,
+          "actions": 189,
+          "scores": [
+            10,
+            7,
+            5,
+            4
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 69,
+          "actions": 252,
+          "scores": [
+            10,
+            6,
+            7,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 2,
+          "turns": 79,
+          "actions": 304,
+          "scores": [
+            6,
+            9,
+            10,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 86,
+          "actions": 338,
+          "scores": [
+            8,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 69,
+          "actions": 251,
+          "scores": [
+            10,
+            5,
+            5,
+            4
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 89,
+          "actions": 356,
+          "scores": [
+            10,
+            8,
+            3,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 65,
+          "actions": 271,
+          "scores": [
+            10,
+            6,
+            9,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 81,
+          "actions": 315,
+          "scores": [
+            10,
+            6,
+            5,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 0,
+          "turns": 69,
+          "actions": 290,
+          "scores": [
+            10,
+            8,
+            8,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 76,
+          "actions": 297,
+          "scores": [
+            7,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 76,
+          "actions": 296,
+          "scores": [
+            8,
+            5,
+            9,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 0,
+          "turns": 73,
+          "actions": 294,
+          "scores": [
+            10,
+            8,
+            7,
+            9
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 72,
+          "actions": 286,
+          "scores": [
+            6,
+            8,
+            7,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 68,
+          "actions": 273,
+          "scores": [
+            8,
+            8,
+            5,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 64,
+          "actions": 220,
+          "scores": [
+            5,
+            4,
+            5,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 268,
+          "scores": [
+            5,
+            7,
+            6,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 3,
+          "turns": 88,
+          "actions": 338,
+          "scores": [
+            8,
+            9,
+            9,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 55,
+          "actions": 193,
+          "scores": [
+            7,
+            5,
+            10,
+            5
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 55,
+          "actions": 210,
+          "scores": [
+            6,
+            7,
+            10,
+            4
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 0,
+          "turns": 85,
+          "actions": 319,
+          "scores": [
+            10,
+            7,
+            9,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 79,
+          "actions": 295,
+          "scores": [
+            6,
+            9,
+            10,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 0,
+          "turns": 69,
+          "actions": 262,
+          "scores": [
+            10,
+            6,
+            6,
+            9
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 87,
+          "actions": 307,
+          "scores": [
+            6,
+            7,
+            10,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 55,
+          "actions": 196,
+          "scores": [
+            5,
+            7,
+            10,
+            5
+          ],
+          "candidateSeat": 3
+        }
+      ]
+    },
+    {
+      "candidate": 3,
+      "wins": 14,
+      "margin": 0.18055555555555558,
+      "config": {
+        "version": 1,
+        "provenance": "strategic-prior",
+        "humanDataUsed": false,
+        "weights": {
+          "points": 9,
+          "production": 8.085754914674908,
+          "diversity": 1.455625349114416,
+          "expansion": 5.429366430777591,
+          "hand": 0.2825956382835284,
+          "progress": 1.8245719152269886,
+          "army": 0.5581627339764963,
+          "threat": 1.1516639437177218
+        },
+        "resource": [
+          1.0734342835377901,
+          1.0842559250397608,
+          0.8583749725855887,
+          1.1852653414476664,
+          1.3391878327168525
+        ]
+      },
+      "results": [
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 239,
+          "scores": [
+            4,
+            5,
+            11,
+            7
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 83,
+          "actions": 333,
+          "scores": [
+            6,
+            4,
+            11,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 71,
+          "actions": 263,
+          "scores": [
+            6,
+            5,
+            10,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 75,
+          "actions": 267,
+          "scores": [
+            7,
+            6,
+            10,
+            5
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 0,
+          "turns": 81,
+          "actions": 311,
+          "scores": [
+            10,
+            6,
+            4,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 1,
+          "turns": 66,
+          "actions": 256,
+          "scores": [
+            8,
+            10,
+            5,
+            9
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 95,
+          "actions": 403,
+          "scores": [
+            9,
+            5,
+            10,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 1,
+          "turns": 82,
+          "actions": 309,
+          "scores": [
+            6,
+            10,
+            4,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 0,
+          "turns": 69,
+          "actions": 269,
+          "scores": [
+            10,
+            7,
+            7,
+            5
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 62,
+          "actions": 246,
+          "scores": [
+            8,
+            10,
+            7,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 3,
+          "turns": 64,
+          "actions": 263,
+          "scores": [
+            7,
+            5,
+            4,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 0,
+          "turns": 61,
+          "actions": 247,
+          "scores": [
+            10,
+            8,
+            6,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 212,
+          "scores": [
+            4,
+            5,
+            10,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 59,
+          "actions": 221,
+          "scores": [
+            5,
+            9,
+            10,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 211,
+          "scores": [
+            5,
+            7,
+            10,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 43,
+          "actions": 157,
+          "scores": [
+            5,
+            4,
+            10,
+            5
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 2,
+          "turns": 59,
+          "actions": 205,
+          "scores": [
+            6,
+            7,
+            10,
+            5
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 62,
+          "actions": 221,
+          "scores": [
+            8,
+            10,
+            6,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 74,
+          "actions": 263,
+          "scores": [
+            7,
+            11,
+            6,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 58,
+          "actions": 208,
+          "scores": [
+            6,
+            10,
+            5,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 66,
+          "actions": 254,
+          "scores": [
+            6,
+            10,
+            9,
+            7
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 75,
+          "actions": 290,
+          "scores": [
+            5,
+            8,
+            10,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 51,
+          "actions": 185,
+          "scores": [
+            4,
+            3,
+            10,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 3,
+          "turns": 80,
+          "actions": 319,
+          "scores": [
+            8,
+            9,
+            9,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 49,
+          "actions": 179,
+          "scores": [
+            10,
+            3,
+            4,
+            4
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 69,
+          "actions": 263,
+          "scores": [
+            10,
+            8,
+            7,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 61,
+          "actions": 201,
+          "scores": [
+            10,
+            6,
+            5,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 66,
+          "actions": 247,
+          "scores": [
+            6,
+            10,
+            7,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 89,
+          "actions": 341,
+          "scores": [
+            10,
+            7,
+            5,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 69,
+          "actions": 278,
+          "scores": [
+            10,
+            7,
+            7,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 69,
+          "actions": 265,
+          "scores": [
+            10,
+            6,
+            6,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 85,
+          "actions": 340,
+          "scores": [
+            10,
+            7,
+            6,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 2,
+          "turns": 59,
+          "actions": 215,
+          "scores": [
+            7,
+            7,
+            10,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 72,
+          "actions": 272,
+          "scores": [
+            5,
+            7,
+            9,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 1,
+          "turns": 74,
+          "actions": 288,
+          "scores": [
+            9,
+            10,
+            6,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 0,
+          "turns": 73,
+          "actions": 298,
+          "scores": [
+            11,
+            7,
+            5,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 285,
+          "scores": [
+            8,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 72,
+          "actions": 266,
+          "scores": [
+            8,
+            6,
+            8,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 64,
+          "actions": 221,
+          "scores": [
+            5,
+            5,
+            5,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 55,
+          "actions": 195,
+          "scores": [
+            7,
+            6,
+            11,
+            5
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 63,
+          "actions": 226,
+          "scores": [
+            9,
+            8,
+            11,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 59,
+          "actions": 225,
+          "scores": [
+            6,
+            7,
+            10,
+            5
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 0,
+          "turns": 61,
+          "actions": 217,
+          "scores": [
+            10,
+            7,
+            5,
+            5
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 71,
+          "actions": 259,
+          "scores": [
+            8,
+            8,
+            10,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 0,
+          "turns": 77,
+          "actions": 287,
+          "scores": [
+            10,
+            7,
+            8,
+            5
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 0,
+          "turns": 73,
+          "actions": 288,
+          "scores": [
+            10,
+            8,
+            8,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 67,
+          "actions": 236,
+          "scores": [
+            5,
+            5,
+            10,
+            5
+          ],
+          "candidateSeat": 3
+        }
+      ]
+    },
+    {
+      "candidate": 1,
+      "wins": 14,
+      "margin": 0.06944444444444443,
+      "config": {
+        "version": 1,
+        "provenance": "strategic-prior",
+        "humanDataUsed": false,
+        "weights": {
+          "points": 9,
+          "production": 9.277679070550949,
+          "diversity": 1.6339666620420756,
+          "expansion": 4.50714286410017,
+          "hand": 0.22769510709284807,
+          "progress": 2.1564303383999506,
+          "army": 0.6032586598128545,
+          "threat": 1.8656502276950049
+        },
+        "resource": [
+          1.0991416024975478,
+          1.1030864002997987,
+          0.9043567170482127,
+          1.178914585756138,
+          1.366536685731262
+        ]
+      },
+      "results": [
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 63,
+          "actions": 221,
+          "scores": [
+            5,
+            3,
+            10,
+            7
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 71,
+          "actions": 260,
+          "scores": [
+            5,
+            3,
+            11,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 0,
+          "turns": 81,
+          "actions": 307,
+          "scores": [
+            10,
+            6,
+            9,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 75,
+          "actions": 267,
+          "scores": [
+            7,
+            6,
+            10,
+            5
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 0,
+          "turns": 81,
+          "actions": 311,
+          "scores": [
+            10,
+            6,
+            4,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 1,
+          "turns": 66,
+          "actions": 256,
+          "scores": [
+            8,
+            10,
+            5,
+            9
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 83,
+          "actions": 339,
+          "scores": [
+            7,
+            6,
+            10,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 1,
+          "turns": 78,
+          "actions": 290,
+          "scores": [
+            7,
+            11,
+            5,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 82,
+          "actions": 316,
+          "scores": [
+            8,
+            10,
+            8,
+            7
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 62,
+          "actions": 246,
+          "scores": [
+            8,
+            10,
+            7,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 0,
+          "turns": 85,
+          "actions": 356,
+          "scores": [
+            11,
+            7,
+            6,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 3,
+          "turns": 80,
+          "actions": 314,
+          "scores": [
+            7,
+            8,
+            5,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 39,
+          "actions": 144,
+          "scores": [
+            3,
+            5,
+            10,
+            5
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 215,
+          "scores": [
+            4,
+            6,
+            10,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 63,
+          "actions": 246,
+          "scores": [
+            6,
+            7,
+            10,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 43,
+          "actions": 157,
+          "scores": [
+            5,
+            4,
+            10,
+            5
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 0,
+          "turns": 49,
+          "actions": 175,
+          "scores": [
+            10,
+            6,
+            6,
+            4
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 86,
+          "actions": 314,
+          "scores": [
+            9,
+            11,
+            8,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 3,
+          "turns": 72,
+          "actions": 247,
+          "scores": [
+            6,
+            9,
+            6,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 58,
+          "actions": 208,
+          "scores": [
+            6,
+            10,
+            5,
+            5
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 66,
+          "actions": 254,
+          "scores": [
+            6,
+            10,
+            9,
+            7
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 71,
+          "actions": 277,
+          "scores": [
+            3,
+            8,
+            10,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 51,
+          "actions": 185,
+          "scores": [
+            4,
+            3,
+            10,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 66,
+          "actions": 257,
+          "scores": [
+            7,
+            10,
+            8,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 3,
+          "turns": 68,
+          "actions": 234,
+          "scores": [
+            6,
+            8,
+            6,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 69,
+          "actions": 262,
+          "scores": [
+            10,
+            8,
+            7,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 61,
+          "actions": 201,
+          "scores": [
+            10,
+            6,
+            5,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 89,
+          "actions": 357,
+          "scores": [
+            10,
+            7,
+            9,
+            9
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 89,
+          "actions": 341,
+          "scores": [
+            10,
+            7,
+            5,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 69,
+          "actions": 278,
+          "scores": [
+            10,
+            7,
+            7,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 69,
+          "actions": 265,
+          "scores": [
+            10,
+            6,
+            6,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 3,
+          "turns": 84,
+          "actions": 337,
+          "scores": [
+            7,
+            6,
+            7,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 2,
+          "turns": 59,
+          "actions": 215,
+          "scores": [
+            7,
+            7,
+            10,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 76,
+          "actions": 293,
+          "scores": [
+            5,
+            7,
+            9,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 1,
+          "turns": 74,
+          "actions": 288,
+          "scores": [
+            9,
+            10,
+            6,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 2,
+          "turns": 71,
+          "actions": 285,
+          "scores": [
+            9,
+            8,
+            10,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 285,
+          "scores": [
+            8,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 2,
+          "turns": 75,
+          "actions": 288,
+          "scores": [
+            6,
+            8,
+            10,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 80,
+          "actions": 288,
+          "scores": [
+            5,
+            8,
+            9,
+            11
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 55,
+          "actions": 195,
+          "scores": [
+            7,
+            6,
+            11,
+            5
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 63,
+          "actions": 228,
+          "scores": [
+            8,
+            8,
+            10,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 59,
+          "actions": 225,
+          "scores": [
+            6,
+            7,
+            10,
+            5
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 1,
+          "turns": 70,
+          "actions": 255,
+          "scores": [
+            6,
+            10,
+            8,
+            5
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 71,
+          "actions": 259,
+          "scores": [
+            8,
+            8,
+            10,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 0,
+          "turns": 77,
+          "actions": 287,
+          "scores": [
+            10,
+            7,
+            8,
+            5
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 3,
+          "turns": 84,
+          "actions": 295,
+          "scores": [
+            7,
+            5,
+            7,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 67,
+          "actions": 236,
+          "scores": [
+            5,
+            5,
+            10,
+            5
+          ],
+          "candidateSeat": 3
+        }
+      ]
+    },
+    {
+      "candidate": 4,
+      "wins": 14,
+      "margin": -0.2430555555555555,
+      "config": {
+        "version": 1,
+        "provenance": "strategic-prior",
+        "humanDataUsed": false,
+        "weights": {
+          "points": 9,
+          "production": 7.8912069159559906,
+          "diversity": 1.439630006306106,
+          "expansion": 3.7406094923475757,
+          "hand": 0.2849413414790761,
+          "progress": 1.5611853094375692,
+          "army": 0.6244908921094611,
+          "threat": 1.4648781159252393
+        },
+        "resource": [
+          1.0659086478408426,
+          1.049250075146556,
+          0.7968040255480445,
+          1.291471285452135,
+          1.2897859416343271
+        ]
+      },
+      "results": [
+        {
+          "seed": "training-v1-0",
+          "winner": 3,
+          "turns": 64,
+          "actions": 230,
+          "scores": [
+            6,
+            3,
+            7,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 248,
+          "scores": [
+            6,
+            4,
+            10,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 0,
+          "turns": 77,
+          "actions": 290,
+          "scores": [
+            10,
+            6,
+            8,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 79,
+          "actions": 293,
+          "scores": [
+            8,
+            4,
+            10,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 3,
+          "turns": 88,
+          "actions": 330,
+          "scores": [
+            4,
+            8,
+            7,
+            11
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 87,
+          "actions": 334,
+          "scores": [
+            6,
+            5,
+            10,
+            9
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 3,
+          "turns": 92,
+          "actions": 393,
+          "scores": [
+            9,
+            5,
+            7,
+            11
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 67,
+          "actions": 250,
+          "scores": [
+            7,
+            6,
+            10,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 3,
+          "turns": 72,
+          "actions": 281,
+          "scores": [
+            9,
+            6,
+            8,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 0,
+          "turns": 69,
+          "actions": 270,
+          "scores": [
+            10,
+            5,
+            7,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 3,
+          "turns": 64,
+          "actions": 263,
+          "scores": [
+            7,
+            5,
+            4,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 2,
+          "turns": 75,
+          "actions": 293,
+          "scores": [
+            8,
+            9,
+            10,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 214,
+          "scores": [
+            3,
+            5,
+            10,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 225,
+          "scores": [
+            3,
+            7,
+            10,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 59,
+          "actions": 231,
+          "scores": [
+            5,
+            8,
+            10,
+            5
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 3,
+          "turns": 60,
+          "actions": 239,
+          "scores": [
+            4,
+            7,
+            8,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 0,
+          "turns": 93,
+          "actions": 345,
+          "scores": [
+            10,
+            9,
+            8,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 2,
+          "turns": 67,
+          "actions": 247,
+          "scores": [
+            7,
+            8,
+            10,
+            5
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 66,
+          "actions": 239,
+          "scores": [
+            8,
+            10,
+            6,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 50,
+          "actions": 169,
+          "scores": [
+            5,
+            10,
+            4,
+            4
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 0,
+          "turns": 69,
+          "actions": 276,
+          "scores": [
+            10,
+            8,
+            9,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 62,
+          "actions": 227,
+          "scores": [
+            4,
+            10,
+            7,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 51,
+          "actions": 184,
+          "scores": [
+            5,
+            3,
+            10,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 70,
+          "actions": 273,
+          "scores": [
+            7,
+            10,
+            9,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 3,
+          "turns": 72,
+          "actions": 255,
+          "scores": [
+            6,
+            6,
+            8,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 69,
+          "actions": 262,
+          "scores": [
+            10,
+            8,
+            7,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 73,
+          "actions": 262,
+          "scores": [
+            10,
+            5,
+            9,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 0,
+          "turns": 73,
+          "actions": 252,
+          "scores": [
+            10,
+            8,
+            8,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 61,
+          "actions": 242,
+          "scores": [
+            10,
+            6,
+            6,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 61,
+          "actions": 229,
+          "scores": [
+            10,
+            5,
+            6,
+            5
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 69,
+          "actions": 265,
+          "scores": [
+            10,
+            6,
+            3,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 77,
+          "actions": 293,
+          "scores": [
+            10,
+            7,
+            5,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 88,
+          "actions": 347,
+          "scores": [
+            9,
+            7,
+            9,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 88,
+          "actions": 366,
+          "scores": [
+            7,
+            9,
+            8,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 2,
+          "turns": 79,
+          "actions": 320,
+          "scores": [
+            5,
+            7,
+            10,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 2,
+          "turns": 67,
+          "actions": 253,
+          "scores": [
+            9,
+            8,
+            10,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 0,
+          "turns": 73,
+          "actions": 303,
+          "scores": [
+            10,
+            8,
+            7,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 68,
+          "actions": 243,
+          "scores": [
+            6,
+            5,
+            5,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 0,
+          "turns": 77,
+          "actions": 280,
+          "scores": [
+            10,
+            8,
+            7,
+            7
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 0,
+          "turns": 69,
+          "actions": 258,
+          "scores": [
+            10,
+            9,
+            6,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 63,
+          "actions": 237,
+          "scores": [
+            8,
+            8,
+            10,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 3,
+          "turns": 72,
+          "actions": 283,
+          "scores": [
+            8,
+            8,
+            9,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 3,
+          "turns": 80,
+          "actions": 302,
+          "scores": [
+            5,
+            9,
+            9,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 1,
+          "turns": 70,
+          "actions": 281,
+          "scores": [
+            9,
+            10,
+            9,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 79,
+          "actions": 301,
+          "scores": [
+            8,
+            9,
+            10,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 1,
+          "turns": 94,
+          "actions": 381,
+          "scores": [
+            9,
+            10,
+            9,
+            7
+          ],
+          "candidateSeat": 3
+        }
+      ]
+    },
+    {
+      "candidate": 5,
+      "wins": 13,
+      "margin": -0.21527777777777776,
+      "config": {
+        "version": 1,
+        "provenance": "strategic-prior",
+        "humanDataUsed": false,
+        "weights": {
+          "points": 9,
+          "production": 9.638842123746873,
+          "diversity": 1.7569677210703958,
+          "expansion": 3.7228039063489997,
+          "hand": 0.25601426543318667,
+          "progress": 1.8889252841938287,
+          "army": 0.5461584556952584,
+          "threat": 1.398111230361974
+        },
+        "resource": [
+          0.9987133767455817,
+          1.1031493585836143,
+          0.8985284951049834,
+          1.3227056860737503,
+          1.4531935298163443
+        ]
+      },
+      "results": [
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 251,
+          "scores": [
+            7,
+            3,
+            10,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 248,
+          "scores": [
+            6,
+            4,
+            10,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 59,
+          "actions": 212,
+          "scores": [
+            5,
+            3,
+            10,
+            4
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 0,
+          "turns": 89,
+          "actions": 351,
+          "scores": [
+            10,
+            7,
+            9,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 0,
+          "turns": 81,
+          "actions": 311,
+          "scores": [
+            10,
+            6,
+            4,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 79,
+          "actions": 317,
+          "scores": [
+            8,
+            6,
+            10,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 79,
+          "actions": 317,
+          "scores": [
+            7,
+            6,
+            10,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 0,
+          "turns": 89,
+          "actions": 359,
+          "scores": [
+            10,
+            7,
+            7,
+            5
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 82,
+          "actions": 319,
+          "scores": [
+            8,
+            11,
+            6,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 0,
+          "turns": 61,
+          "actions": 238,
+          "scores": [
+            10,
+            6,
+            7,
+            7
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 0,
+          "turns": 73,
+          "actions": 295,
+          "scores": [
+            10,
+            9,
+            5,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 2,
+          "turns": 87,
+          "actions": 349,
+          "scores": [
+            9,
+            9,
+            10,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 212,
+          "scores": [
+            4,
+            5,
+            10,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 1,
+          "turns": 62,
+          "actions": 230,
+          "scores": [
+            6,
+            10,
+            8,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 208,
+          "scores": [
+            6,
+            8,
+            10,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 206,
+          "scores": [
+            5,
+            8,
+            10,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 82,
+          "actions": 308,
+          "scores": [
+            8,
+            10,
+            7,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 3,
+          "turns": 68,
+          "actions": 234,
+          "scores": [
+            6,
+            9,
+            7,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 74,
+          "actions": 266,
+          "scores": [
+            7,
+            10,
+            7,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 3,
+          "turns": 60,
+          "actions": 214,
+          "scores": [
+            6,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 70,
+          "actions": 270,
+          "scores": [
+            5,
+            10,
+            8,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 3,
+          "turns": 80,
+          "actions": 293,
+          "scores": [
+            7,
+            8,
+            7,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 63,
+          "actions": 238,
+          "scores": [
+            7,
+            8,
+            10,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 2,
+          "turns": 79,
+          "actions": 311,
+          "scores": [
+            9,
+            9,
+            10,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 62,
+          "actions": 211,
+          "scores": [
+            5,
+            10,
+            6,
+            5
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 2,
+          "turns": 67,
+          "actions": 244,
+          "scores": [
+            8,
+            5,
+            10,
+            5
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 98,
+          "actions": 395,
+          "scores": [
+            9,
+            10,
+            7,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 86,
+          "actions": 338,
+          "scores": [
+            9,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 69,
+          "actions": 259,
+          "scores": [
+            10,
+            5,
+            7,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 3,
+          "turns": 88,
+          "actions": 353,
+          "scores": [
+            9,
+            5,
+            7,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 3,
+          "turns": 88,
+          "actions": 349,
+          "scores": [
+            8,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 3,
+          "turns": 68,
+          "actions": 264,
+          "scores": [
+            7,
+            4,
+            5,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 92,
+          "actions": 376,
+          "scores": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 72,
+          "actions": 272,
+          "scores": [
+            5,
+            7,
+            9,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 1,
+          "turns": 74,
+          "actions": 288,
+          "scores": [
+            9,
+            10,
+            6,
+            7
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 1,
+          "turns": 58,
+          "actions": 227,
+          "scores": [
+            6,
+            10,
+            6,
+            7
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 64,
+          "actions": 226,
+          "scores": [
+            5,
+            4,
+            5,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 290,
+          "scores": [
+            6,
+            6,
+            6,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 3,
+          "turns": 80,
+          "actions": 301,
+          "scores": [
+            8,
+            7,
+            9,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 0,
+          "turns": 69,
+          "actions": 257,
+          "scores": [
+            10,
+            9,
+            7,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 71,
+          "actions": 270,
+          "scores": [
+            8,
+            9,
+            10,
+            5
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 59,
+          "actions": 209,
+          "scores": [
+            6,
+            6,
+            10,
+            4
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 1,
+          "turns": 78,
+          "actions": 297,
+          "scores": [
+            6,
+            11,
+            8,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 1,
+          "turns": 58,
+          "actions": 193,
+          "scores": [
+            4,
+            10,
+            5,
+            4
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 107,
+          "actions": 401,
+          "scores": [
+            7,
+            7,
+            10,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 2,
+          "turns": 67,
+          "actions": 236,
+          "scores": [
+            5,
+            5,
+            10,
+            5
+          ],
+          "candidateSeat": 3
+        }
+      ]
+    },
+    {
+      "candidate": 0,
+      "wins": 12,
+      "margin": 0,
+      "config": {
+        "version": 1,
+        "provenance": "strategic-prior",
+        "humanDataUsed": false,
+        "weights": {
+          "points": 9,
+          "production": 8,
+          "diversity": 1.5,
+          "expansion": 4.2,
+          "hand": 0.26,
+          "progress": 1.8,
+          "army": 0.7,
+          "threat": 1.5
+        },
+        "resource": [
+          1,
+          1.05,
+          0.85,
+          1.3,
+          1.4
+        ]
+      },
+      "results": [
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 248,
+          "scores": [
+            6,
+            4,
+            10,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 248,
+          "scores": [
+            6,
+            4,
+            10,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 248,
+          "scores": [
+            6,
+            4,
+            10,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-0",
+          "winner": 2,
+          "turns": 67,
+          "actions": 248,
+          "scores": [
+            6,
+            4,
+            10,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 79,
+          "actions": 317,
+          "scores": [
+            7,
+            6,
+            10,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 79,
+          "actions": 317,
+          "scores": [
+            7,
+            6,
+            10,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 79,
+          "actions": 317,
+          "scores": [
+            7,
+            6,
+            10,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-1",
+          "winner": 2,
+          "turns": 79,
+          "actions": 317,
+          "scores": [
+            7,
+            6,
+            10,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 74,
+          "actions": 286,
+          "scores": [
+            8,
+            10,
+            9,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 74,
+          "actions": 286,
+          "scores": [
+            8,
+            10,
+            9,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 74,
+          "actions": 286,
+          "scores": [
+            8,
+            10,
+            9,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-2",
+          "winner": 1,
+          "turns": 74,
+          "actions": 286,
+          "scores": [
+            8,
+            10,
+            9,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 208,
+          "scores": [
+            6,
+            8,
+            10,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 208,
+          "scores": [
+            6,
+            8,
+            10,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 208,
+          "scores": [
+            6,
+            8,
+            10,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-3",
+          "winner": 2,
+          "turns": 55,
+          "actions": 208,
+          "scores": [
+            6,
+            8,
+            10,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 82,
+          "actions": 308,
+          "scores": [
+            8,
+            10,
+            7,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 82,
+          "actions": 308,
+          "scores": [
+            8,
+            10,
+            7,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 82,
+          "actions": 308,
+          "scores": [
+            8,
+            10,
+            7,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-4",
+          "winner": 1,
+          "turns": 82,
+          "actions": 308,
+          "scores": [
+            8,
+            10,
+            7,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 70,
+          "actions": 270,
+          "scores": [
+            5,
+            10,
+            8,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 70,
+          "actions": 270,
+          "scores": [
+            5,
+            10,
+            8,
+            9
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 70,
+          "actions": 270,
+          "scores": [
+            5,
+            10,
+            8,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-5",
+          "winner": 1,
+          "turns": 70,
+          "actions": 270,
+          "scores": [
+            5,
+            10,
+            8,
+            9
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 86,
+          "actions": 336,
+          "scores": [
+            8,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 86,
+          "actions": 336,
+          "scores": [
+            8,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 86,
+          "actions": 336,
+          "scores": [
+            8,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-6",
+          "winner": 1,
+          "turns": 86,
+          "actions": 336,
+          "scores": [
+            8,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 85,
+          "actions": 340,
+          "scores": [
+            10,
+            5,
+            7,
+            9
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 85,
+          "actions": 340,
+          "scores": [
+            10,
+            5,
+            7,
+            9
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 85,
+          "actions": 340,
+          "scores": [
+            10,
+            5,
+            7,
+            9
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-7",
+          "winner": 0,
+          "turns": 85,
+          "actions": 340,
+          "scores": [
+            10,
+            5,
+            7,
+            9
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 64,
+          "actions": 249,
+          "scores": [
+            8,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 64,
+          "actions": 249,
+          "scores": [
+            8,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 64,
+          "actions": 249,
+          "scores": [
+            8,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-8",
+          "winner": 3,
+          "turns": 64,
+          "actions": 249,
+          "scores": [
+            8,
+            8,
+            8,
+            10
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-9",
+          "winner": 3,
+          "turns": 76,
+          "actions": 282,
+          "scores": [
+            8,
+            7,
+            6,
+            11
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 59,
+          "actions": 218,
+          "scores": [
+            5,
+            7,
+            10,
+            6
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 59,
+          "actions": 218,
+          "scores": [
+            5,
+            7,
+            10,
+            6
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 59,
+          "actions": 218,
+          "scores": [
+            5,
+            7,
+            10,
+            6
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-10",
+          "winner": 2,
+          "turns": 59,
+          "actions": 218,
+          "scores": [
+            5,
+            7,
+            10,
+            6
+          ],
+          "candidateSeat": 3
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 1,
+          "turns": 82,
+          "actions": 332,
+          "scores": [
+            9,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 0
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 1,
+          "turns": 82,
+          "actions": 332,
+          "scores": [
+            9,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 1
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 1,
+          "turns": 82,
+          "actions": 332,
+          "scores": [
+            9,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 2
+        },
+        {
+          "seed": "training-v1-11",
+          "winner": 1,
+          "turns": 82,
+          "actions": 332,
+          "scores": [
+            9,
+            10,
+            9,
+            8
+          ],
+          "candidateSeat": 3
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "generatedAt": "2026-10-30T23:50:33.967Z",
+  "kind": "full-match search smoke evaluation",
+  "games": 16,
+  "searchBudget": {
+    "rollouts": 54,
+    "horizonTurns": 5
+  },
+  "comparator": "Three tuned strategic heuristics without search",
+  "wins": 6,
+  "draws": 0,
+  "elapsedSeconds": 96.176222333,
+  "caveat": "Seed-balanced bot-only evaluation, not a human skill rating. Browser expert budget is 54 rollouts / 5 turns.",
+  "results": [
+    {
+      "seed": "search-final-v2-0",
+      "winner": 1,
+      "turns": 62,
+      "actions": 232,
+      "scores": [
+        5,
+        10,
+        3,
+        4
+      ],
+      "searchSeat": 0
+    },
+    {
+      "seed": "search-final-v2-0",
+      "winner": 1,
+      "turns": 58,
+      "actions": 216,
+      "scores": [
+        6,
+        10,
+        4,
+        4
+      ],
+      "searchSeat": 1
+    },
+    {
+      "seed": "search-final-v2-0",
+      "winner": 1,
+      "turns": 66,
+      "actions": 249,
+      "scores": [
+        6,
+        10,
+        6,
+        4
+      ],
+      "searchSeat": 2
+    },
+    {
+      "seed": "search-final-v2-0",
+      "winner": 0,
+      "turns": 81,
+      "actions": 321,
+      "scores": [
+        10,
+        7,
+        8,
+        4
+      ],
+      "searchSeat": 3
+    },
+    {
+      "seed": "search-final-v2-1",
+      "winner": 0,
+      "turns": 69,
+      "actions": 252,
+      "scores": [
+        10,
+        6,
+        7,
+        7
+      ],
+      "searchSeat": 0
+    },
+    {
+      "seed": "search-final-v2-1",
+      "winner": 0,
+      "turns": 69,
+      "actions": 261,
+      "scores": [
+        10,
+        8,
+        5,
+        5
+      ],
+      "searchSeat": 1
+    },
+    {
+      "seed": "search-final-v2-1",
+      "winner": 0,
+      "turns": 69,
+      "actions": 258,
+      "scores": [
+        10,
+        7,
+        8,
+        6
+      ],
+      "searchSeat": 2
+    },
+    {
+      "seed": "search-final-v2-1",
+      "winner": 0,
+      "turns": 81,
+      "actions": 316,
+      "scores": [
+        10,
+        8,
+        7,
+        7
+      ],
+      "searchSeat": 3
+    },
+    {
+      "seed": "search-final-v2-2",
+      "winner": 0,
+      "turns": 69,
+      "actions": 238,
+      "scores": [
+        10,
+        6,
+        7,
+        4
+      ],
+      "searchSeat": 0
+    },
+    {
+      "seed": "search-final-v2-2",
+      "winner": 1,
+      "turns": 78,
+      "actions": 277,
+      "scores": [
+        6,
+        10,
+        7,
+        3
+      ],
+      "searchSeat": 1
+    },
+    {
+      "seed": "search-final-v2-2",
+      "winner": 0,
+      "turns": 77,
+      "actions": 272,
+      "scores": [
+        10,
+        8,
+        7,
+        4
+      ],
+      "searchSeat": 2
+    },
+    {
+      "seed": "search-final-v2-2",
+      "winner": 0,
+      "turns": 85,
+      "actions": 303,
+      "scores": [
+        10,
+        7,
+        8,
+        9
+      ],
+      "searchSeat": 3
+    },
+    {
+      "seed": "search-final-v2-3",
+      "winner": 2,
+      "turns": 59,
+      "actions": 230,
+      "scores": [
+        5,
+        6,
+        10,
+        6
+      ],
+      "searchSeat": 0
+    },
+    {
+      "seed": "search-final-v2-3",
+      "winner": 1,
+      "turns": 70,
+      "actions": 272,
+      "scores": [
+        8,
+        10,
+        8,
+        8
+      ],
+      "searchSeat": 1
+    },
+    {
+      "seed": "search-final-v2-3",
+      "winner": 3,
+      "turns": 72,
+      "actions": 291,
+      "scores": [
+        6,
+        8,
+        9,
+        10
+      ],
+      "searchSeat": 2
+    },
+    {
+      "seed": "search-final-v2-3",
+      "winner": 3,
+      "turns": 68,
+      "actions": 280,
+      "scores": [
+        5,
+        8,
+        9,
+        10
+      ],
+      "searchSeat": 3
+    }
+  ]
+}
