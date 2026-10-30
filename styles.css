@@ -6,3 +6,4 @@
 .dice>.die{display:grid;font-size:initial}.die i{display:block}
 .tile-number{font-size:20px}.tile-label{font-size:8px;letter-spacing:1px}.port-label{font-size:8px}
 .bank-count{font-size:7px;font-weight:400;text-align:right;color:#a8ae9c}
+.board-expand{position:absolute;bottom:18px;right:50px;border-radius:5px;border:1px solid #ced5c5;background:#f6f5ed;color:#7b8a74;width:25px;height:23px;font-size:16px;line-height:1}.board-wrap.expanded{height:min(680px,78vh);min-height:400px;aspect-ratio:auto}@media(max-width:480px){.board-expand{bottom:10px;right:36px;width:22px;height:20px;font-size:14px}}

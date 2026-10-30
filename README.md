@@ -21,7 +21,7 @@ No dependency installation, API key, account, or backend service is needed. The 
 
 - Roll, collect resources, then build or trade. First to ten points on your own turn wins.
 - Choose a build card, then click a highlighted road edge or intersection.
-- Click a terrain for its dice probability. More dots mean more likely production.
+- Use the board’s expand control for larger map targets. Click a terrain for its dice probability. More dots mean more likely production.
 - Use coastal ports to improve the standard 4:1 bank exchange rate.
 - Respond to rival offers, make your own bundles, and consider their counteroffers.
 - Play development cards from your hand once eligible. New cards cannot be played on their purchase turn.

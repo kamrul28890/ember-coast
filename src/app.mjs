@@ -229,3 +229,10 @@ $('export-button').onclick = () => {
 };
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && !modal.open) { selected = null; highlights = []; render(); } });
 render(); save(); bots();
+
+$('expand-board').onclick = () => {
+  const expanded = document.querySelector('.board-wrap').classList.toggle('expanded');
+  $('expand-board').setAttribute('aria-pressed', String(expanded));
+  $('expand-board').setAttribute('aria-label', expanded ? 'Collapse island board' : 'Expand island board');
+  $('expand-board').title = expanded ? 'Compact board' : 'Larger board';
+};
