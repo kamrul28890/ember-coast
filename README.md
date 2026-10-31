@@ -26,10 +26,12 @@ No dependency installation, API key, account, or backend service is needed. The 
 - Respond to rival offers, make your own bundles, and consider their counteroffers.
 - Play development cards from your hand once eligible. New cards cannot be played on their purchase turn.
 - Use **Ask advisor** for a recommendation, and **Bot minds** for disclosed strategic explanations.
-- **New island** offers seed selection, three thinking budgets, manual opening placement, or a four-bot demonstration.
+- **New island** offers seed selection, three thinking budgets, manual opening placement by default, or a four-bot demonstration.
 - Matches save in your browser's local storage. **Export match** downloads the full local save and action history. It explicitly includes hidden hands/deck; it is not uploaded anywhere.
 
-The in-game **How to play** explains production, discards, raider movement, development cards, supply shortages, piece limits, and award ties. This is an independent game with documented rules, not an official CATAN or Colonist client.
+Click the paired dice on the right to animate a roll. On your turn, floating map icons show affordable legal builds: choose a road origin, then an edge, or click a house/city directly. The four icon-only build controls show their resource costs in one row.
+
+See [base-game rule coverage](docs/RULES.md) for the scope and official references. The in-game **How to play** explains production, discards, raider movement, development cards, supply shortages, piece limits, and award ties. This is an independent game with documented rules, not an official CATAN or Colonist client.
 
 ## The intelligence
 

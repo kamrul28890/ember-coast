@@ -151,7 +151,7 @@ export function describe(action, s, p) {
     plenty: 'Fills the most useful gaps in the build plan.', monopoly: 'Uses public resource evidence to estimate the most valuable resource.',
     roads: 'Converts a development card into connected expansion.',
     discard: 'Protects resources that are harder to replace or needed for the next build.',
-    end: 'Keeps a useful reserve instead of spending on a weak move.', roll: 'Collects production before committing to a build.', 'skip-road': 'Avoids spending a free road where it cannot help.'
+    end: 'Keeps a useful reserve instead of spending on a weak move.', roll: 'Collects production before committing to a build.', 'skip-road': 'Continues because no further legal free road is available.'
   };
   return { goal: targets[goal.type] ?? 'Build a resilient economy', reason: phrase[action.type] ?? 'Chooses a legal move consistent with the current plan.' };
 }

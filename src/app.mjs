@@ -3,9 +3,9 @@ import { opening, decide, quickAction, sampleHidden, noteOffer, POLICY } from '.
 import { boardSVG, resourceIcon, buildIcon, avatar, die, escape, RESOURCE_COLORS } from './art.mjs';
 const $ = id => document.getElementById(id), modal = $('modal'), storageKey = 'ember-coast-save-v1';
 let game, selected = null, tab = 'activity', busy = false, generation = 0, botLoopRunning = false, negotiation = null, shownWinner = false, toastTimer, highlights = [], speed = 260;
-let attemptedTrades = new Set();
+let attemptedTrades = new Set(), rolling = false, roadStart = null;
 try { const saved = JSON.parse(localStorage.getItem(storageKey)); if (saved) { validateState(saved); game = saved; } } catch { /* corrupt local save never prevents a new game */ }
-if (!game) game = opening(createGame('saffron-bay'));
+if (!game) game = createGame('saffron-bay');
 const worker = new Worker(new URL('./worker.mjs', import.meta.url), { type: 'module' }), requests = new Map(); let requestID = 0;
 worker.onmessage = ({ data }) => { const pending = requests.get(data.id); if (!pending) return; clearTimeout(pending.timeout); requests.delete(data.id); data.error ? pending.reject(new Error(data.error)) : pending.resolve(data.result); };
 worker.onerror = event => { for (const pending of requests.values()) { clearTimeout(pending.timeout); pending.reject(new Error(event.message || 'The planning worker is unavailable.')); } requests.clear(); };
@@ -19,7 +19,7 @@ function commit(action, decision = null) {
     applyAction(game, action);
     if (decision && !['end', 'roll'].includes(action.type)) game.decisions[player] = { goal: decision.goal, reason: decision.reason, simulations: decision.simulations, elapsedMs: decision.elapsedMs, action: decision.action, turn: game.turn, model: decision.model };
     game.timeline ??= []; game.timeline.push({ player, turn: game.turn, phase, action: structuredClone(action), ...(action.type === 'roll' ? { dice: game.dice.slice() } : {}) });
-    validateState(game); selected = null; highlights = []; save(); render();
+    validateState(game); selected = null; roadStart = null; highlights = []; save(); render();
     if (game.winner !== null && !shownWinner) { shownWinner = true; setTimeout(showVictory, 450); }
     return true;
   } catch (error) { toast(error.message); return false; }
@@ -34,36 +34,42 @@ function render() {
     const score = game.winner !== null || player.id === 0 && player.human ? points(game, player.id) : publicPoints(game, player.id);
     return `<div class="player ${p === player.id && game.winner === null ? 'current' : ''}" style="--player-color:${player.color}" aria-label="${escape(player.name)}, ${score} points"><div class="avatar">${avatar(player)}</div><div><div class="player-name">${escape(player.name)}${player.human ? '<span>YOU</span>' : ''}</div><div class="player-role">${escape(player.title)}</div><div class="player-info"><span title="Resource cards">▤ ${sum(game.hands[player.id])}</span><span title="Development cards">✧ ${game.dev[player.id].length}</span>${game.longest === player.id ? '<span title="Longest road">⌁ +2</span>' : ''}${game.army === player.id ? '<span title="Largest army">⚑ +2</span>' : ''}</div></div><div class="player-points">${score}<small>POINTS</small></div></div>`;
   }).join('');
-  $('board').innerHTML = boardSVG(game, human ? phaseMode() : null, highlights);
-  $('dice').innerHTML = game.dice.every(Boolean) ? game.dice.map(die).join('') : '<span>·</span><span>·</span>';
+  document.querySelector('.board-wrap').classList.toggle('opening', game.phase.startsWith('setup'));
+  $('board').innerHTML = boardSVG(game, human ? phaseMode() : null, highlights, { roadStart, enabled: human && !busy && !rolling });
+  if (!rolling) $('dice').innerHTML = (game.dice.every(Boolean) ? game.dice : [1, 1]).map(die).join('');
+  $('dice').disabled = !human || busy || rolling || game.phase !== 'roll';
+  $('dice').classList.toggle('rolling', rolling);
+  const lastRoll = game.events.findLast(e => e.kind === 'dice');
+  $('dice-result').textContent = rolling ? `${active.name} ${active.human ? 'are' : 'is'} rolling…` : game.dice.every(Boolean) ? `${game.players[lastRoll?.player ?? game.current].name} rolled ${game.dice.join(' + ')} = ${sum(game.dice)}` : game.phase.startsWith('setup') ? 'Place two houses and their roads first' : 'Click both dice to roll';
+  $('board').setAttribute('aria-busy', String(rolling));
   $('hand-summary').textContent = `${cards} cards · ${game.dev[0].length} developments`;
   $('hand').innerHTML = RES.map((name, r) => `<div class="resource-card ${human && game.phase === 'discard' && game.hands[0][r] ? 'discardable' : ''}" style="--resource-color:${RESOURCE_COLORS[r]}" ${human && game.phase === 'discard' ? `data-discard="${r}" role="button" tabindex="0" aria-label="Discard one ${name}"` : ''}>${resourceIcon(r, 'resource-icon')}<span class="resource-count">${game.players[0].human ? game.hands[0][r] : '—'}</span><span class="resource-name">${name}</span><small class="bank-count" title="Public resource supply">bank ${game.bank[r]}</small></div>`).join('');
-  const names = { knight: 'Knight', point: 'Quiet victory · +1', roads: 'Two roads', plenty: 'Harvest', monopoly: 'Monopoly' };
-  $('dev-hand').innerHTML = game.players[0].human ? game.dev[0].map((card, index) => `<button class="dev-card" data-dev="${index}" ${!human || game.playedDev || card.bought >= game.turn || card.type === 'point' || !['roll', 'build'].includes(game.phase) ? 'disabled' : ''}>✧ ${names[card.type]}${card.type !== 'point' && card.bought >= game.turn ? '<small>next turn</small>' : ''}</button>`).join('') : '';
   const actions = human ? legalActions(game) : [];
-  $('build-actions').innerHTML = ['road', 'settlement', 'city', 'develop'].map(type => `<button class="build-card ${selected === type ? 'selected' : ''}" data-build="${type}" ${!actions.some(a => a.type === type) || game.phase !== 'build' ? 'disabled' : ''} title="${COST[type].map((n, r) => n ? `${n} ${RES[r]}` : '').filter(Boolean).join(', ')}"><span class="build-title">${buildIcon(type)}${{ road: 'Road', settlement: 'Outpost', city: 'City', develop: 'Develop' }[type]}</span><span class="cost-icons">${COST[type].flatMap((n, r) => Array.from({ length: n }, () => `<span class="cost-icon">${resourceIcon(r)}</span>`)).join('')}</span></button>`).join('');
-  $('trade-button').disabled = !human || game.phase !== 'build';
-  $('advisor-button').disabled = !human || busy;
+  const names = { knight: 'Knight', point: 'Quiet victory · +1', roads: 'Two roads', plenty: 'Harvest', monopoly: 'Monopoly' };
+  $('dev-hand').innerHTML = game.players[0].human ? game.dev[0].map((card, index) => `<button class="dev-card" data-dev="${index}" ${!human || busy || rolling || game.playedDev || card.bought >= game.turn || card.type === 'point' || !actions.some(a => a.type === card.type) || !['roll', 'build'].includes(game.phase) ? 'disabled' : ''}>✧ ${names[card.type]}${card.type !== 'point' && card.bought >= game.turn ? '<small>next turn</small>' : ''}</button>`).join('') : '';
+  $('build-actions').innerHTML = ['road', 'settlement', 'city', 'develop'].map(type => `<button class="build-card ${selected === type ? 'selected' : ''}" data-build="${type}" ${busy || rolling || !actions.some(a => a.type === type) || game.phase !== 'build' ? 'disabled' : ''} aria-label="${{road: 'Build road', settlement: 'Build outpost', city: 'Upgrade to city', develop: 'Buy development card'}[type]}" title="${{road: 'Road', settlement: 'Outpost', city: 'City', develop: 'Development card'}[type]} · ${COST[type].map((n, r) => n ? `${n} ${RES[r]}` : '').filter(Boolean).join(', ')}"><span class="build-title">${buildIcon(type)}</span><span class="cost-icons">${COST[type].flatMap((n, r) => Array.from({ length: n }, () => `<span class="cost-icon">${resourceIcon(r)}</span>`)).join('')}</span></button>`).join('');
+  $('trade-button').disabled = !human || busy || rolling || game.phase !== 'build';
+  $('advisor-button').disabled = !human || busy || rolling;
   $('turn-label').textContent = game.winner !== null ? 'ISLAND COMPLETE' : human ? 'YOUR TURN' : `${active?.name.toUpperCase() ?? 'RIVALS'}'S TURN`;
   $('turn-title').classList.toggle('thinking', busy && !human);
   const stage = game.phase, primary = $('primary-action'), secondary = $('secondary-action');
-  primary.disabled = !human && game.winner === null;
-  secondary.hidden = !selected || !human;
+  primary.disabled = rolling || busy || !human && game.winner === null;
+  secondary.hidden = (!selected && roadStart === null) || !human;
   const instructions = {
     roll: ['A little possibility.', 'Roll for production, then trade and build your next advantage.', 'Roll the dice', 'ROLL & GATHER'],
-    build: ['Find your next move.', selected ? `Choose a highlighted ${selected === 'road' ? 'edge for your road' : 'intersection for your ' + (selected === 'city' ? 'city' : 'outpost')} on the island.` : 'Build something lasting, strike a good trade, or keep your resources for next turn.', 'Finish turn', 'TRADE & BUILD'],
+    build: ['Find your next move.', selected ? `Choose a highlighted ${selected === 'road' ? 'edge for your road' : 'intersection for your ' + (selected === 'city' ? 'city' : 'outpost')} on the island.` : 'Click a floating road, house, or city on the map. You can trade and build in any order, then finish your turn.', 'Finish turn', 'TRADE & BUILD'],
     robber: ['Change the tide.', 'Choose a terrain tile for the raider. Its production stops until the raider moves.', 'Choose for me', 'MOVE THE RAIDER'],
     discard: ['Travel a little lighter.', `Click resources to discard ${game.discardRemaining[p] ?? 0} more cards. Everyone with more than seven must give up half.`, 'Discard for me', 'DISCARD'],
-    'setup-settlement': ['Choose your foothold.', 'Place an outpost at a highlighted intersection. Mix productive dice numbers and resources.', 'Suggest & place', 'OPENING PLACEMENT'],
-    'setup-road': ['Make a connection.', 'Choose a highlighted edge beside your new outpost.', 'Suggest & place', 'OPENING ROAD'],
-    'free-road': ['A path forward.', `Place up to ${game.freeRoads} free roads, or skip what you do not need.`, 'Skip remaining roads', 'FREE ROADS'],
+    'setup-settlement': ['Choose your foothold.', `Place ${game.setupIndex < 4 ? 'your first' : 'your second'} outpost using a floating house. Each player places a house and road, then the order reverses. Your second house supplies starting resources.`, 'Suggest & place', 'OPENING PLACEMENT'],
+    'setup-road': ['Make a connection.', 'Click the floating road icon beside your new outpost, then choose a connected edge.', 'Suggest & place', 'OPENING ROAD'],
+    'free-road': ['A path forward.', `Place ${game.freeRoads} remaining free road${game.freeRoads === 1 ? '' : 's'}. Normal connections and the 15-road limit apply.`, legalActions(game).some(a => a.type === 'road') ? 'Suggest & place' : 'Continue', 'FREE ROADS'],
     finished: ['A story well played.', 'The island has a winner. Explore the journal or start a new adventure.', 'Another island', '10 POINTS TO WIN'],
   }[stage];
   $('phase-pill').textContent = instructions?.[3] ?? 'ON THE ISLAND';
   $('turn-title').textContent = human || game.winner !== null ? instructions?.[0] ?? 'On the island.' : `${active.name} is planning`;
   $('turn-description').textContent = human || game.winner !== null ? instructions?.[1] ?? '' : `${active.title}. Weighing production, expansion routes, and the players around the table.`;
   primary.innerHTML = `${human || game.winner !== null ? instructions?.[2] ?? 'Continue' : busy ? 'Thinking through the possibilities' : 'Rivals are playing'} <span>${busy && !human ? '✧' : '↗'}</span>`;
-  $('board-tip').innerHTML = `<i></i> ${escape(human ? selected ? 'Your possibilities are highlighted on the map.' : stage === 'roll' ? 'Your turn. Let the island decide.' : stage === 'discard' ? 'Click your hand to discard resources.' : stage === 'robber' ? 'Where should the raider go next?' : 'Make a move. Make it yours.' : game.winner !== null ? `${game.players[game.winner].name} wins the island.` : `${active?.name ?? 'A rival'} is considering the next move.`)}`;
+  $('board-tip').innerHTML = `<i></i> ${escape(human ? selected === 'road' ? roadStart === null ? 'Choose a floating road icon to start.' : 'Choose a glowing edge to build your road.' : selected ? 'Your possibilities are highlighted on the map.' : stage === 'roll' ? 'Your turn. Let the island decide.' : stage === 'discard' ? 'Click your hand to discard resources.' : stage === 'robber' ? 'Where should the raider go next?' : 'Make a move. Make it yours.' : game.winner !== null ? `${game.players[game.winner].name} wins the island.` : `${active?.name ?? 'A rival'} is considering the next move.`)}`;
   renderJournal();
 }
 function renderJournal() {
@@ -98,26 +104,40 @@ async function bots() {
       try { decision = await rpc('decide', observe(game, p), { options: { strength: game.difficulty } }); }
       catch (error) { toast(error.message); decision = decide(observe(game, p), { strength: 'casual' }); decision.reason += ' Worker fallback used.'; }
       if (epoch !== generation) break;
-      if (!commit(decision.action, decision)) break;
+      if (!(decision.action.type === 'roll' ? await animateRoll(decision) : commit(decision.action, decision))) break;
     }
   } catch (error) { toast(`The table paused: ${error.message}`); }
   finally { busy = false; botLoopRunning = false; render(); if (epoch !== generation) setTimeout(bots, 0); }
 }
-function move(action) { if (!humanActive() || busy) return; if (commit(action)) bots(); }
+function move(action) { if (!humanActive() || busy || rolling) return; if (commit(action)) bots(); }
+async function animateRoll(decision = null) {
+  if (rolling || game.phase !== 'roll') return false;
+  const epoch = generation; rolling = true; render();
+  const timer = setInterval(() => { if (epoch === generation) $('dice').innerHTML = [1 + Math.floor(Math.random() * 6), 1 + Math.floor(Math.random() * 6)].map(die).join(''); }, 85);
+  await wait(matchMedia('(prefers-reduced-motion: reduce)').matches ? 180 : 850);
+  clearInterval(timer);
+  if (epoch !== generation) return false;
+  rolling = false;
+  return commit({ type: 'roll' }, decision);
+}
+async function humanRoll() { if (!humanActive() || busy || rolling || game.phase !== 'roll') return; if (await animateRoll()) bots(); }
+$('dice').onclick = humanRoll;
 $('primary-action').onclick = () => {
   if (game.winner !== null) return showNewGame();
-  if (!humanActive()) return;
-  if (game.phase === 'roll') move({ type: 'roll' });
+  if (!humanActive() || busy || rolling) return;
+  if (game.phase === 'roll') humanRoll();
   else if (game.phase === 'build') move({ type: 'end' });
-  else if (game.phase === 'free-road') move({ type: 'skip-road' });
+  else if (game.phase === 'free-road') move(legalActions(game).find(a => a.type === 'skip-road') ?? decide(observe(game, 0), { strength: 'casual' }).action);
   else { const result = decide(observe(game, 0), { strength: 'casual' }); move(result.action); }
 };
-$('secondary-action').onclick = () => { selected = null; highlights = []; render(); };
-$('build-actions').onclick = event => { const button = event.target.closest('[data-build]'); if (!button || button.disabled) return; const type = button.dataset.build; if (type === 'develop') move({ type: 'develop' }); else { selected = selected === type ? null : type; render(); } };
+$('secondary-action').onclick = () => { selected = null; roadStart = null; highlights = []; render(); };
+$('build-actions').onclick = event => { const button = event.target.closest('[data-build]'); if (!button || button.disabled) return; const type = button.dataset.build; if (type === 'develop') move({ type: 'develop' }); else { selected = selected === type ? null : type; roadStart = null; render(); } };
 function boardClick(event) {
-  if (!humanActive() || busy) return;
+  if (!humanActive() || busy || rolling) return;
+  const start = event.target.closest('[data-road-start]');
+  if (start) { selected = 'road'; roadStart = Number(start.dataset.roadStart); render(); return; }
   const node = event.target.closest('[data-node]'), edge = event.target.closest('[data-edge]'), raider = event.target.closest('[data-robber]');
-  if (node) return move({ type: phaseMode(), node: Number(node.dataset.node) });
+  if (node) return move({ type: node.dataset.kind || phaseMode(), node: Number(node.dataset.node) });
   if (edge) return move({ type: 'road', edge: Number(edge.dataset.edge) });
   if (raider) {
     const actions = legalActions(game).filter(a => a.type === 'robber' && a.tile === Number(raider.dataset.robber));
@@ -158,14 +178,20 @@ function showVictims(actions) {
   document.querySelectorAll('[data-victim]').forEach(b => b.onclick = () => { modal.close(); move(actions[Number(b.dataset.victim)]); });
 }
 function showCardChoice(type) {
-  showModal(type === 'monopoly' ? 'Choose a resource' : 'A generous harvest', `<p class="modal-text">${type === 'monopoly' ? 'Collect this resource from every rival. Their exact holdings are hidden.' : 'Choose two resources from the supply. The same resource can be chosen twice.'}</p><label class="form-label">RESOURCE</label><select id="card-one" class="form-input">${RES.map((r, i) => `<option value="${i}">${r}</option>`).join('')}</select>${type === 'plenty' ? `<label class="form-label">SECOND RESOURCE</label><select id="card-two" class="form-input">${RES.map((r, i) => `<option value="${i}">${r}</option>`).join('')}</select>` : ''}<div class="modal-actions"><button class="primary-button" id="play-card">Play card ↗</button></div>`);
-  $('play-card').onclick = () => { const a = type === 'monopoly' ? { type, resource: Number($('card-one').value) } : { type, resources: [Number($('card-one').value), Number($('card-two').value)].sort((a, b) => a - b) }; if (!legalActions(game).some(v => JSON.stringify(v) === JSON.stringify(a))) return toast('The supply cannot provide that choice.'); modal.close(); move(a); };
+  if (type === 'plenty') {
+    const choices = legalActions(game).filter(a => a.type === 'plenty');
+    showModal('A generous harvest', `<p class="modal-text">Choose resources from the available supply. You may choose the same type twice. If only one card remains, take that card.</p>${choices.map((a, i) => `<button class="victim-button" data-harvest="${i}">${a.resources.map(r => `${resourceIcon(r)} ${RES[r]}`).join(' + ')}</button>`).join('')}`);
+    document.querySelectorAll('[data-harvest]').forEach(button => button.onclick = () => { modal.close(); move(choices[Number(button.dataset.harvest)]); });
+    return;
+  }
+  showModal('Choose a resource', `<p class="modal-text">Collect this resource from every rival. Their exact holdings are hidden.</p><label class="form-label" for="card-one">RESOURCE</label><select id="card-one" class="form-input">${RES.map((r, i) => `<option value="${i}">${r}</option>`).join('')}</select><div class="modal-actions"><button class="primary-button" id="play-card">Play card ↗</button></div>`);
+  $('play-card').onclick = () => { modal.close(); move({ type: 'monopoly', resource: Number($('card-one').value) }); };
 }
 function bundleText(bundle) { return bundle.map((n, r) => n ? `${n} ${RES[r]}` : '').filter(Boolean).join(' + ') || 'nothing'; }
 function showTrade(other = 1) {
   if (!humanActive() || game.phase !== 'build') return;
   const bank = legalActions(game).filter(a => a.type === 'bank');
-  showModal('A good deal goes both ways.', `<p class="modal-text">Make an offer to a rival, or trade at the bank using your harbor rate.</p><label class="form-label">TRADE WITH</label><select id="trade-other" class="form-input">${game.players.slice(1).map(p => `<option value="${p.id}" ${other === p.id ? 'selected' : ''}>${escape(p.name)} · ${escape(p.title)}</option>`).join('')}</select><div class="trade-columns"><div><h3>YOU GIVE</h3>${RES.map((r, i) => `<label class="trade-resource">${resourceIcon(i)}<span>${r}</span><input type="number" id="give-${i}" min="0" max="${game.hands[0][i]}" value="0" aria-label="Give ${r}"></label>`).join('')}</div><div><h3>YOU RECEIVE</h3>${RES.map((r, i) => `<label class="trade-resource">${resourceIcon(i)}<span>${r}</span><input type="number" id="get-${i}" min="0" max="3" value="0" aria-label="Request ${r}"></label>`).join('')}</div></div><div id="trade-response"></div><div class="modal-actions"><button class="primary-button" id="offer-trade">Make an offer ⇄</button></div><details style="margin-top:20px"><summary class="form-label" style="cursor:pointer">BANK & HARBOR TRADES (${bank.length} available)</summary><div style="max-height:170px;overflow:auto">${bank.length ? bank.map((a, i) => `<button class="victim-button" data-bank="${i}">${resourceIcon(a.give)}${bankRate(game, 0, a.give)} ${RES[a.give]} <span>→</span> ${resourceIcon(a.get)}1 ${RES[a.get]}</button>`).join('') : '<p class="modal-text">Collect four of one resource, or use a 3:1 / 2:1 coastal harbor.</p>'}</div></details>`);
+  showModal('A good deal goes both ways.', `<p class="modal-text">Make an offer to a rival, or trade at the bank using your harbor rate.</p><label class="form-label">TRADE WITH</label><select id="trade-other" class="form-input">${game.players.slice(1).map(p => `<option value="${p.id}" ${other === p.id ? 'selected' : ''}>${escape(p.name)} · ${escape(p.title)}</option>`).join('')}</select><div class="trade-columns"><div><h3>YOU GIVE</h3>${RES.map((r, i) => `<label class="trade-resource">${resourceIcon(i)}<span>${r}</span><input type="number" id="give-${i}" min="0" max="${game.hands[0][i]}" value="0" aria-label="Give ${r}"></label>`).join('')}</div><div><h3>YOU RECEIVE</h3>${RES.map((r, i) => `<label class="trade-resource">${resourceIcon(i)}<span>${r}</span><input type="number" id="get-${i}" min="0" max="19" value="0" aria-label="Request ${r}"></label>`).join('')}</div></div><div id="trade-response"></div><div class="modal-actions"><button class="primary-button" id="offer-trade">Make an offer ⇄</button></div><details style="margin-top:20px"><summary class="form-label" style="cursor:pointer">BANK & HARBOR TRADES (${bank.length} available)</summary><div style="max-height:170px;overflow:auto">${bank.length ? bank.map((a, i) => `<button class="victim-button" data-bank="${i}">${resourceIcon(a.give)}${bankRate(game, 0, a.give)} ${RES[a.give]} <span>→</span> ${resourceIcon(a.get)}1 ${RES[a.get]}</button>`).join('') : '<p class="modal-text">Collect four of one resource, or use a 3:1 / 2:1 coastal harbor.</p>'}</div></details>`);
   document.querySelectorAll('[data-bank]').forEach(button => button.onclick = () => { modal.close(); move(bank[Number(button.dataset.bank)]); });
   $('offer-trade').onclick = async () => {
     const give = RES.map((_, i) => Number($(`give-${i}`).value)), get = RES.map((_, i) => Number($(`get-${i}`).value)), other = Number($('trade-other').value);
@@ -200,9 +226,9 @@ function respondToBot(accept) {
   bots();
 }
 function showNewGame() {
-  showModal('Every island, a new story.', `<p class="modal-text">One keeper, three thoughtful rivals. First to ten points wins. Start from an intelligent shared opening, or place your own outposts.</p><label class="form-label" for="island-seed">ISLAND SEED</label><input id="island-seed" class="form-input" value="${escape('coast-' + Math.floor(Math.random() * 100000))}" maxlength="40"><label class="form-label" for="difficulty">RIVAL PLANNING</label><select id="difficulty" class="form-input"><option value="expert" ${game.difficulty === 'expert' ? 'selected' : ''}>Deep thinker · sampled-future search</option><option value="balanced" ${game.difficulty === 'balanced' ? 'selected' : ''}>Clever · lighter search</option><option value="casual">Casual · strategic heuristics</option></select><label class="setting-option"><input id="guided-opening" type="checkbox"> Let me place my opening outposts</label><label class="setting-option"><input id="spectator" type="checkbox"> Watch a four-bot demonstration</label><div class="modal-actions"><button class="primary-button" id="start-island">Set sail ↗</button></div><p class="modal-text" style="font-size:10px">This replaces the current local save. You can export it first from the table footer.</p>`);
+  showModal('Every island, a new story.', `<p class="modal-text">One keeper, three thoughtful rivals. First to ten points wins. Place two opening outposts and their roads in the standard forward-and-reverse order. Uncheck manual placement for a quick demonstration.</p><label class="form-label" for="island-seed">ISLAND SEED</label><input id="island-seed" class="form-input" value="${escape('coast-' + Math.floor(Math.random() * 100000))}" maxlength="40"><label class="form-label" for="difficulty">RIVAL PLANNING</label><select id="difficulty" class="form-input"><option value="expert" ${game.difficulty === 'expert' ? 'selected' : ''}>Deep thinker · sampled-future search</option><option value="balanced" ${game.difficulty === 'balanced' ? 'selected' : ''}>Clever · lighter search</option><option value="casual">Casual · strategic heuristics</option></select><label class="setting-option"><input id="guided-opening" type="checkbox" checked> Let me place my opening outposts</label><label class="setting-option"><input id="spectator" type="checkbox"> Watch a four-bot demonstration</label><div class="modal-actions"><button class="primary-button" id="start-island">Set sail ↗</button></div><p class="modal-text" style="font-size:10px">This replaces the current local save. You can export it first from the table footer.</p>`);
   $('start-island').onclick = () => {
-    generation++; negotiation = null; busy = false; selected = null; highlights = []; attemptedTrades = new Set(); shownWinner = false;
+    generation++; rolling = false; roadStart = null; negotiation = null; busy = false; selected = null; highlights = []; attemptedTrades = new Set(); shownWinner = false;
     const guided = $('guided-opening').checked, human = !$('spectator').checked;
     game = createGame($('island-seed').value.trim() || 'a-new-coast', { difficulty: $('difficulty').value, human });
     if (!guided) opening(game);
@@ -217,7 +243,7 @@ function showVictory() {
   $('play-again').onclick = showNewGame;
 }
 function showRules() {
-  showModal('A small island. Ten big points.', `<div class="modal-text"><p>Gather resources, grow your network, and trade your way to <strong>10 points on your turn</strong>. Ember Coast is an independent island-settlement game with familiar economic mechanics and original art.</p><div class="rule-grid"><div class="rule-card"><strong>1 · Roll & gather</strong>Tiles matching the two dice produce one resource per adjacent outpost; cities collect two. The raider blocks its tile.</div><div class="rule-card"><strong>2 · Trade & build</strong>Trade with rivals or the bank. Coastal ports improve the usual 4:1 rate to 3:1 or 2:1.</div><div class="rule-card"><strong>3 · Grow thoughtfully</strong>Roads must connect. Outposts need an empty neighboring intersection on every side. Upgrade an outpost into a city.</div><div class="rule-card"><strong>4 · Reach ten</strong>Outposts: 1 point. Cities: 2. Longest road (5+) and largest army (3+ knights): 2 each. Quiet-victory cards add 1.</div></div><h3>When seven arrives</h3><p>Everyone holding more than seven resources discards half, rounded down. The roller moves the raider and may take one random resource from an adjacent rival. Discards and stolen card identities stay hidden from opponents.</p><h3>Development cards</h3><p>Buy for wool, grain, and ore. Play at most one per turn, never on the turn you buy it. Knights move the raider; two roads gives free connections; harvest grants two resources; monopoly collects one resource type from rivals. Victory cards count automatically.</p><h3>A fair supply</h3><p>There are 19 cards of each resource. Supply counts are public and shown below your resource cards. If a resource cannot cover an entire production payout, none of that resource is produced. Roads, outposts, and cities have piece limits of 15, 5, and 4. Ties retain an existing road/army award; without an incumbent, nobody receives it.</p><h3>Read the map</h3><p>More dots mean more likely dice numbers. Six and eight are especially productive. Green markers show legal building choices. Click a terrain to see its odds.</p></div>`);
+  showModal('A small island. Ten big points.', `<div class="modal-text"><p>Gather resources, grow your network, and trade your way to <strong>10 points on your turn</strong>. Ember Coast is an independent island-settlement game with familiar economic mechanics and original art.</p><div class="rule-grid"><div class="rule-card"><strong>1 · Roll & gather</strong>Tiles matching the two dice produce one resource per adjacent outpost; cities collect two. The raider blocks its tile.</div><div class="rule-card"><strong>2 · Trade & build</strong>Trade with rivals or the bank. Coastal ports improve the usual 4:1 rate to 3:1 or 2:1.</div><div class="rule-card"><strong>3 · Grow thoughtfully</strong>Roads must connect. Outposts need an empty neighboring intersection on every side. Upgrade an outpost into a city.</div><div class="rule-card"><strong>4 · Reach ten</strong>Outposts: 1 point. Cities: 2. Longest road (5+) and largest army (3+ knights): 2 each. Quiet-victory cards add 1.</div></div><h3>When seven arrives</h3><p>Everyone holding more than seven resources discards half, rounded down. The roller moves the raider and may take one random resource from an adjacent rival. Discards and stolen card identities stay hidden from opponents.</p><h3>Development cards</h3><p>Buy for wool, grain, and ore. Play at most one per turn, never on the turn you buy it. Knights move the raider; two roads places both free connections when legal, or stops when no road remains available; harvest grants two available resources (one if that is all the supply contains); monopoly collects one resource type from rivals. Victory cards count automatically.</p><h3>A fair supply</h3><p>There are 19 cards of each resource. Supply counts are public and shown below your resource cards. If the supply cannot cover multiple players, nobody receives that resource. If only one player is owed that resource, they receive the remaining supply. Roads, outposts, and cities have piece limits of 15, 5, and 4. Ties retain an existing road/army award; without an incumbent, nobody receives it.</p><h3>Read the map</h3><p>More dots mean more likely dice numbers. Six and eight are especially productive. Green markers show legal building choices. Click a terrain to see its odds.</p></div>`);
 }
 $('how-button').onclick = showRules; $('legend-button').onclick = showRules;
 $('ai-button').onclick = () => showModal('Thoughtful, not all-knowing.', `<div class="modal-text"><p>Each rival combines a strategic goal, resource scarcity estimates, connected-route planning, and trade valuation. Rivals remember declined offers and avoid immediately repeating them. Deep thinkers compare sampled futures in a background worker.</p><p><strong>Fair information:</strong> bots receive their own cards, public buildings and card counts. Opponent resources and development cards are sampled as possibilities; the actual hidden hands, future deck, and dice-generator state are removed.</p><p><strong>Different priorities:</strong> Mira favors production and expansion, Theo values flexible trading, and Jun pressures leaders and military bonuses.</p><p><strong>Learning:</strong> this build uses strategic priors and locally generated self-play tuning. No historical human-game dataset has been used. Search strength is not a validated human skill rating.</p><p>Open Bot minds for explanations. Export a local match to contribute authorized replay data to future evaluations.</p><label class="form-label">BOT PLAYBACK SPEED</label><select id="bot-speed" class="form-input"><option value="550">Unhurried</option><option value="260" ${speed === 260 ? 'selected' : ''}>At the table</option><option value="40" ${speed < 100 ? 'selected' : ''}>Fast demonstration</option></select></div>`);

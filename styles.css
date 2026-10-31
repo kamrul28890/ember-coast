@@ -7,3 +7,32 @@
 .tile-number{font-size:20px}.tile-label{font-size:8px;letter-spacing:1px}.port-label{font-size:8px}
 .bank-count{font-size:7px;font-weight:400;text-align:right;color:#a8ae9c}
 .board-expand{position:absolute;bottom:18px;right:50px;border-radius:5px;border:1px solid #ced5c5;background:#f6f5ed;color:#7b8a74;width:25px;height:23px;font-size:16px;line-height:1}.board-wrap.expanded{height:min(680px,78vh);min-height:400px;aspect-ratio:auto}@media(max-width:480px){.board-expand{bottom:10px;right:36px;width:22px;height:20px;font-size:14px}}
+
+/* Direct map construction and paired dice controls. */
+button.dice{display:flex;gap:8px;padding:5px;border:0;background:transparent;cursor:pointer;flex-shrink:0;border-radius:10px;transition:background .2s,transform .2s}
+button.dice:not(:disabled):hover{background:#e8e5d3;transform:translateY(-2px)}
+button.dice:disabled{opacity:1;cursor:default}
+button.dice:not(:disabled){box-shadow:0 0 0 1px #b7c1a7}
+.dice-result{font-size:11px;color:#77856d;min-height:15px;margin:2px 0 8px;text-align:right}
+.dice.rolling .die{animation:dice-tumble .23s ease-in-out infinite alternate}
+.dice.rolling .die:nth-child(2){animation-delay:-.12s}
+@keyframes dice-tumble{from{transform:translateY(-4px) rotate(-17deg)}to{transform:translateY(4px) rotate(17deg)}}
+.build-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.build-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:12px 3px;min-width:0}
+.build-title{display:flex;justify-content:center;align-items:center;margin:0}
+.build-title svg{width:26px;height:26px}
+.cost-icons{display:flex;flex-wrap:nowrap;gap:2px;justify-content:center;margin:0}
+.cost-icon,.cost-icon svg{width:9px;height:12px;flex-shrink:0}
+.map-marker{cursor:pointer;outline:none}
+.marker-bob{animation:marker-float 2.6s ease-in-out infinite;filter:drop-shadow(0 2px 2px #52644825);transform-box:fill-box;transform-origin:center}
+.map-marker:hover .marker-bob,.map-marker:focus .marker-bob,.map-marker.chosen .marker-bob{animation:none;transform:translateY(-3px) scale(1.12)}
+.map-marker:hover circle,.map-marker:focus circle,.map-marker.chosen circle{stroke:#a57535;stroke-width:2}
+.map-marker circle:last-child{stroke:none}
+@keyframes marker-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media(prefers-reduced-motion:reduce){.marker-bob,.dice.rolling .die{animation:none}}
+@media(max-width:550px){.sidebar{display:flex;flex-direction:column}.build-actions{grid-template-columns:repeat(4,minmax(0,1fr))}.cost-icon,.cost-icon svg{width:11px;height:13px}}
+
+.board-wrap.opening{height:clamp(440px,65vh,580px);min-height:440px}
+@media(max-width:480px){.turn-title{display:flex;align-items:center;justify-content:space-between}.dice{margin-top:0}.board-wrap.opening{height:380px;min-height:380px}.dice-result{text-align:right}}
+
+.board-wrap.opening .board-tip{top:2px;font-size:8px;padding:5px 10px}

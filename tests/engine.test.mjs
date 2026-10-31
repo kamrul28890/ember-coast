@@ -32,7 +32,7 @@ test('income, city double payout, raider blocking, resource shortage', () => {
   const blocked = clone(s); blocked.robber = tile.id; const previous = blocked.hands[0][tile.resource]; production(blocked, tile.number);
   const otherMatches = s.board.nodes[n].tiles.filter(id => id !== tile.id && s.board.tiles[id].number === tile.number && s.board.tiles[id].resource === tile.resource).length;
   assert.equal(blocked.hands[0][tile.resource] - previous, otherMatches * 2);
-  const short = createGame('shortage'), t = short.board.tiles.find(t => t.resource >= 0); short.nodeOwner[t.nodes[0]] = 0; short.levels[t.nodes[0]] = 2; short.bank[t.resource] = 1; const prior = short.hands[0][t.resource]; production(short, t.number); assert.equal(short.hands[0][t.resource], prior);
+  const short = createGame('shortage'), t = short.board.tiles.find(t => t.resource >= 0); short.nodeOwner[t.nodes[0]] = 0; short.levels[t.nodes[0]] = 2; short.bank[t.resource] = 1; const prior = short.hands[0][t.resource]; production(short, t.number); assert.equal(short.hands[0][t.resource], prior + 1);
 });
 test('bank rates and bank conservation; illegal trades do not mutate', () => {
   const s = opening(createGame('market')); s.phase = 'build'; funded(s, 0, [5, 2, 2, 2, 2]);

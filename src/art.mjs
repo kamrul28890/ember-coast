@@ -35,9 +35,12 @@ function terrain(resource, tile) {
   if (resource === 4) return `<path d="M-42 7l20-32L-8-5 7-33 30 6z" fill="#949f98"/><path d="M-28-14l6-11 6 10-5-2-3 3zM-2-15l9-18 10 17-7-3-4 5z" fill="#e6e9d9"/><path d="M-36 10L-13-7 5 10" fill="#a6afa4"/>`;
   return `<path d="M-38 2q20-20 38-6t37-3v20h-75" fill="#d2b88d"/><path d="M-32 0q18-10 32 0m7 6q14-9 28-5" stroke="#ebd8b4" stroke-width="1.5" fill="none"/><circle cx="25" cy="-23" r="6" fill="#eed4a0"/>`;
 }
-export function boardSVG(s, mode = null, highlights = []) {
-  const legal = actor(s) === 0 && s.players[0].human ? legalActions(s) : [];
-  const nodeActions = legal.filter(a => a.type === mode && a.node !== undefined), edgeActions = legal.filter(a => a.type === 'road' && mode === 'road');
+export function boardSVG(s, mode = null, highlights = [], { roadStart = null, enabled = true } = {}) {
+  const legal = enabled && actor(s) === 0 && s.players[0].human ? legalActions(s) : [];
+  const nodeActions = legal.filter(a => a.node !== undefined && (a.type === mode || mode === null && s.phase === 'build'));
+  const roads = legal.filter(a => a.type === 'road' && (mode === 'road' || mode === null && s.phase === 'build'));
+  const edgeActions = roads.filter(a => roadStart !== null && s.board.edges[a.edge].nodes.includes(roadStart));
+  const starts = s.board.nodes.filter(n => roads.some(a => n.edges.includes(a.edge)) && (s.phase === 'setup-road' ? n.id === s.setupNode : s.nodeOwner[n.id] === actor(s) || s.nodeOwner[n.id] < 0 && n.edges.some(e => s.edgeOwner[e] === actor(s))));
   const tileActions = s.phase === 'robber' ? legal : [];
   let svg = `<defs><filter id="tileShadow" x="-20%" y="-20%" width="140%" height="145%"><feDropShadow dx="0" dy="2" stdDeviation="1" flood-color="#a6b59b" flood-opacity=".18"/></filter><filter id="pieceShadow"><feDropShadow dx="0" dy="2" stdDeviation="1.4" flood-color="#45533e" flood-opacity=".25"/></filter><pattern id="waterDots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".45" fill="#b7c7af" opacity=".4"/></pattern></defs><ellipse cx="0" cy="0" rx="312" ry="277" fill="url(#waterDots)"/>`;
   svg += `<g fill="none" stroke="#c9d5c2" stroke-width=".65" opacity=".5"><path d="M-285-80q15-6 30 0t30 0M220 95q15-6 30 0t30 0M-252 153q15-6 30 0t30 0M190-183q15-6 30 0t30 0"/></g>`;
@@ -63,11 +66,20 @@ export function boardSVG(s, mode = null, highlights = []) {
     svg += `<g data-edge="${a.edge}" tabindex="0" role="button" aria-label="Build road ${a.edge}"><path class="edge-hit" d="M${n.join(' ')}L${m.join(' ')}"/><path class="edge-option" d="M${n.join(' ')}L${m.join(' ')}"/></g>`;
   }
   for (const n of s.board.nodes) {
-    const [x, y] = xy(n), owner = s.nodeOwner[n.id], city = s.levels[n.id] === 2, active = nodeActions.some(a => a.node === n.id), hint = highlights.some(a => a.node === n.id);
+    const [x, y] = xy(n), owner = s.nodeOwner[n.id], city = s.levels[n.id] === 2, active = false, hint = highlights.some(a => a.node === n.id);
     if (hint) svg += `<circle cx="${x}" cy="${y}" r="14" fill="none" stroke="#a67942" stroke-width="2" stroke-dasharray="3 3"/>`;
     if (owner >= 0) svg += `<g transform="translate(${x},${y})" ${active ? `data-node="${n.id}" tabindex="0" role="button" aria-label="Upgrade outpost ${n.id}"` : ''}>${active ? '<circle r="14" fill="#f8e9b2" opacity=".7"/>' : ''}<path class="site" fill="${s.players[owner].color}" d="${city ? 'M-10 7v-13l6-5 6 5v4l5-5 6 5v9z' : 'M-8 7V-3L0-10 8-3V7z'}"/><path d="M-2 6v-5h4v5" fill="#fff4dc"/>${city ? '<circle class="city-marker" cx="-4" cy="-4" r="1.5"/>' : ''}${active ? '<circle class="vertex-hit" r="16"/>' : ''}</g>`;
     else if (active) svg += `<g data-node="${n.id}" tabindex="0" role="button" aria-label="Build outpost at intersection ${n.id}"><circle class="vertex-option" cx="${x}" cy="${y}" r="7"/><circle class="vertex-hit" cx="${x}" cy="${y}" r="14"/></g>`;
     else svg += `<circle cx="${x}" cy="${y}" r="1.5" fill="#7f937a" opacity=".28"/>`;
+  }
+  const marker = (x, y, attributes, label, path, selected = false) => `<g transform="translate(${x},${y})" ${attributes} tabindex="0" role="button" aria-label="${label}" class="map-marker ${selected ? 'chosen' : ''}"><g class="marker-bob"><path d="M0 8v8" stroke="#6b8061" stroke-width="1.5"/><circle r="11" fill="#fffdf2" stroke="#738d65" stroke-width="1.3"/><path d="${path}" fill="none" stroke="#4d6c43" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle r="14" fill="transparent"/></g></g>`;
+  for (const a of nodeActions) {
+    const [x, y] = xy(s.board.nodes[a.node]);
+    svg += marker(x, y - 18, `data-node="${a.node}" data-kind="${a.type}"`, `${a.type === 'city' ? 'Upgrade to city' : 'Build outpost'} at intersection ${a.node}`, a.type === 'city' ? 'M-6 5v-9l3-3 3 3v3l3-3 3 3v6z' : 'M-6 5v-6l6-5 6 5v6zM-1 5V1h2v4');
+  }
+  for (const n of starts) {
+    const [x, y] = xy(n);
+    svg += marker(x + 14, y + 10, `data-road-start="${n.id}"`, `Start road from intersection ${n.id}`, 'M-6 5L4-5M-3 7L7-3M-3 2l2 2M1-2l2 2', roadStart === n.id);
   }
   return svg;
 }

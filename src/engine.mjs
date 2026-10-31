@@ -94,7 +94,7 @@ export function legalActions(s, p = actor(s)) {
     return result;
   }
   const roadActions = () => stock.roads < 15 ? s.board.edges.filter(e => s.edgeOwner[e.id] < 0 && roadConnected(s, e.id, p)).map(e => ({ type: 'road', edge: e.id })) : [];
-  if (s.phase === 'free-road') return [...roadActions(), { type: 'skip-road' }];
+  if (s.phase === 'free-road') { const roads = roadActions(); return roads.length ? roads : [{ type: 'skip-road' }]; }
   if (s.phase === 'roll') result.push({ type: 'roll' });
   if (s.phase === 'build') {
     if (canPay(hand, COST.road)) result.push(...roadActions());
@@ -109,6 +109,7 @@ export function legalActions(s, p = actor(s)) {
     if (ready.has('knight')) result.push({ type: 'knight' });
     if (ready.has('roads') && roadActions().length) result.push({ type: 'roads' });
     if (ready.has('monopoly')) for (let resource = 0; resource < 5; resource++) result.push({ type: 'monopoly', resource });
+    if (ready.has('plenty') && sum(s.bank) === 1) result.push({ type: 'plenty', resources: [s.bank.findIndex(n => n > 0)] });
     if (ready.has('plenty')) for (let a = 0; a < 5; a++) for (let b = a; b < 5; b++) if (s.bank[a] >= (a === b ? 2 : 1) && s.bank[b] >= 1) result.push({ type: 'plenty', resources: [a, b] });
   }
   return result;
@@ -124,7 +125,13 @@ export function production(s, roll) {
   const demand = Array.from({ length: 4 }, () => Array(5).fill(0));
   for (const tile of s.board.tiles) if (tile.number === roll && tile.id !== s.robber && tile.resource >= 0) for (const n of tile.nodes) if (s.nodeOwner[n] >= 0) demand[s.nodeOwner[n]][tile.resource] += s.levels[n];
   const gained = Array(4).fill(0);
-  for (let r = 0; r < 5; r++) if (demand.reduce((v, hand) => v + hand[r], 0) <= s.bank[r]) for (let p = 0; p < 4; p++) if (demand[p][r]) { give(s, p, r, demand[p][r]); gained[p] += demand[p][r]; }
+  for (let r = 0; r < 5; r++) {
+    const recipients = demand.map((h, p) => h[r] ? p : -1).filter(p => p >= 0);
+    const total = demand.reduce((v, hand) => v + hand[r], 0);
+    if (total <= s.bank[r] || recipients.length === 1) for (const p of recipients) {
+      const amount = Math.min(demand[p][r], s.bank[r]); give(s, p, r, amount); gained[p] += amount;
+    }
+  }
   return gained;
 }
 export function longestRoad(s, p) {
