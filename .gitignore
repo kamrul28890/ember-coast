@@ -1,4 +1,23 @@
-.DS_Store
+# Dependencies
 node_modules/
+
+# Logs
 *.log
+npm-debug.log*
+
+# Local state
 .local/
+
+# Captured third-party page data (kept locally, not redistributed)
+docs/reference/*.json
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

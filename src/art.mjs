@@ -1,6 +1,6 @@
 import { RES, PIPS, actor, legalActions } from './engine.mjs';
-export const RESOURCE_COLORS = ['#6e9275', '#ba8466', '#a8b47e', '#cfb05e', '#939b99'];
-export const TILE_COLORS = ['#a9c6ad', '#d1aa8c', '#cad5a6', '#e5ce91', '#bfc4ba', '#e0cba4'];
+export const RESOURCE_COLORS = ['#158442', '#d36b3b', '#88b932', '#e2ab24', '#798b99'];
+export const TILE_COLORS = ['#50ac65', '#e29a63', '#b4d76a', '#f2cd59', '#aebdc6', '#e6d0a0'];
 export const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export function symbol(resource) {
   return [

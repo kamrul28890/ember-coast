@@ -4,6 +4,8 @@ A playable, original island-economy game for **one human and three planning bots
 
 The first version is local/browser-only. It is separate from BatteryScope and does not change or publish that project.
 
+The ocean-blue table interface uses brighter original terrain, compact player panels, animated dice, production highlights, and resource-gain feedback. See [REA visual reference notes](docs/reference/README.md) for the inspected reference and limits.
+
 ## Play
 
 Open **http://localhost:4173** while the local server is running.
@@ -101,3 +103,7 @@ Included: four seats, 19 hexes, five resources, harbors, roads/outposts/cities, 
 Not included: online multiplayer, authentication, timers, ranked play, expansions, voice/free-form dialogue, or neural-network training. Private plans are disclosed in the optional learning panel, while private card identities remain hidden until an explicit full-save export.
 
 MIT license. Original implementation and code-generated art.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

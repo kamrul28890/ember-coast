@@ -14,12 +14,25 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 function toast(message) { $('toast').textContent = message; $('toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.remove('show'), 4000); }
 function save() { try { localStorage.setItem(storageKey, JSON.stringify(game)); } catch { toast('Local storage is full or unavailable. Export your match to keep it.'); } }
 function commit(action, decision = null) {
-  const player = actor(game), phase = game.phase;
+  const player = actor(game), phase = game.phase, previousHand = game.hands[0].slice();
   try {
     applyAction(game, action);
     if (decision && !['end', 'roll'].includes(action.type)) game.decisions[player] = { goal: decision.goal, reason: decision.reason, simulations: decision.simulations, elapsedMs: decision.elapsedMs, action: decision.action, turn: game.turn, model: decision.model };
     game.timeline ??= []; game.timeline.push({ player, turn: game.turn, phase, action: structuredClone(action), ...(action.type === 'roll' ? { dice: game.dice.slice() } : {}) });
     validateState(game); selected = null; roadStart = null; highlights = []; save(); render();
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (action.type === 'roll') {
+        const total = sum(game.dice);
+        for (const tile of game.board.tiles.filter(t => t.number === total && t.id !== game.robber)) {
+          document.querySelector(`[data-tile="${tile.id}"] .hex`)?.animate(
+            [{ filter: 'brightness(1)' }, { filter: 'brightness(1.45)' }, { filter: 'brightness(1)' }],
+            { duration: 850, iterations: 2 });
+        }
+      }
+      for (const [r, card] of [...$('hand').children].entries()) if (game.hands[0][r] > previousHand[r]) {
+        card.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-10px)', background: '#fff2b8' }, { transform: 'translateY(0)' }], { duration: 650 });
+      }
+    }
     if (game.winner !== null && !shownWinner) { shownWinner = true; setTimeout(showVictory, 450); }
     return true;
   } catch (error) { toast(error.message); return false; }
